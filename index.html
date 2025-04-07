@@ -175,6 +175,38 @@
                 margin: 0;
                 color: green;
             }
+        .banner h1 {
+            animation: fadeInBanner 1.2s ease forwards, shineText 5s linear infinite;
+            background: linear-gradient(90deg, white, #fff0f5, white);
+            background-size: 200% auto;
+            color: transparent;
+            background-clip: text;
+            -webkit-background-clip: text;
+        }
+
+        .boton-container {
+            text-align: center;
+            margin-top: 40px;
+        }
+
+        .boton-personaliza {
+            background: linear-gradient(135deg, #f06292, #ba68c8);
+            border: none;
+            color: white;
+            padding: 15px 30px;
+            font-size: 18px;
+            font-weight: bold;
+            border-radius: 30px;
+            cursor: pointer;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+        }
+
+            .boton-personaliza:hover {
+                transform: scale(1.05);
+                box-shadow: 0 6px 14px rgba(0, 0, 0, 0.3);
+            }
+
         @media (max-width: 768px) {
             .carrusel-container {
                 width: 100%;
@@ -233,14 +265,7 @@
             }
         }
 
-        .banner h1 {
-            animation: fadeInBanner 1.2s ease forwards, shineText 5s linear infinite;
-            background: linear-gradient(90deg, white, #fff0f5, white);
-            background-size: 200% auto;
-            color: transparent;
-            background-clip: text;
-            -webkit-background-clip: text;
-        }
+
 
     </style>
 </head>
@@ -308,6 +333,10 @@
             <h4>Producto 4</h4>
             <p>$9.900</p>
         </div>
+    </div>
+
+    <div class="boton-container">
+        <button class="boton-personaliza">PERSONALIZA EL TUYO AHORA</button>
     </div>
 
     <script>
