@@ -4,6 +4,55 @@
     <meta charset="UTF-8">
     <title>NAMI - mugs</title>
     <style>
+
+        /* Fondo animado */
+        #fondo-animado {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100vh;
+            z-index: -1;
+            background-color: white;
+            transition: background-color 0.5s ease;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            overflow: hidden;
+        }
+
+        .nami-text {
+            font-size: 100px;
+            font-weight: bold;
+            font-family: 'Arial', sans-serif;
+            color: rgba(0, 0, 0, 0.05);
+            animation: flotar 6s infinite ease-in-out;
+            user-select: none;
+        }
+
+        @keyframes flotar {
+            0% {
+                transform: translateY(0px) rotate(0deg);
+            }
+
+            50% {
+                transform: translateY(-20px) rotate(5deg);
+            }
+
+            100% {
+                transform: translateY(0px) rotate(0deg);
+            }
+        }
+
+        /* Cuando se hace scroll, cambiamos el color */
+        body.scroll-activo #fondo-animado {
+            background-color: #000;
+        }
+
+        body.scroll-activo .nami-text {
+            color: rgba(255, 255, 255, 0.05);
+        }
+
         body {
             margin: 0;
             font-family: Arial, sans-serif;
@@ -279,6 +328,10 @@
         <div>👤 NAMI</div>
     </header>
 
+    <div id="fondo-animado">
+        <span class="nami-text">NAMI</span>
+    </div>
+
     <div class="menu">
         <a href="#">Categorías</a>
         <a href="#">Ofertas</a>
@@ -373,5 +426,17 @@
         carrusel.addEventListener("mouseenter", stopAutoSlide);
         carrusel.addEventListener("mouseleave", startAutoSlide);
     </script>
+
+    <script>
+        window.addEventListener('scroll', () => {
+            const scrollPos = window.scrollY;
+            if (scrollPos > 100) {
+                document.body.classList.add('scroll-activo');
+            } else {
+                document.body.classList.remove('scroll-activo');
+            }
+        });
+    </script>
+
 </body>
 </html>
