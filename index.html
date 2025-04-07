@@ -2,7 +2,7 @@
 <html lang="es">
 <head>
     <meta charset="UTF-8">
-    <title>Mi Mercado</title>
+    <title>NAMI - mugs</title>
     <style>
         body {
             margin: 0;
@@ -33,7 +33,13 @@
             background-color: white;
             padding: 2px;
             box-shadow: 0 0 10px rgba(128, 0, 128, 0.5);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
         }
+
+            .logo-img:hover {
+                transform: scale(1.1);
+                box-shadow: 0 0 15px rgba(128, 0, 128, 0.8);
+            }
 
         .search-bar input {
             padding: 5px;
@@ -105,12 +111,12 @@
 
     <header>
         <div class="logo">
-            <img src="Images/logo.png" alt=" NAMI" style="height: 40px;">
+            <img src="images/logo.png" alt="    NAMI" class="logo-img">
         </div>
         <div class="search-bar">
             <input type="text" placeholder="Buscar productos, marcas...">
         </div>
-        <div>👤 Nicolás</div>
+        <div>👤 NAMI</div>
     </header>
 
     <div class="menu">
