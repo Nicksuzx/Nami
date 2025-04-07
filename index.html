@@ -15,43 +15,52 @@
             z-index: -1;
             background-color: white;
             transition: background-color 0.5s ease;
-            display: flex;
-            justify-content: center;
-            align-items: center;
             overflow: hidden;
         }
 
-        .nami-text {
-            font-size: 100px;
-            font-weight: bold;
-            font-family: 'Arial', sans-serif;
-            color: rgba(0, 0, 0, 0.05);
-            animation: flotar 6s infinite ease-in-out;
-            user-select: none;
-        }
-
-        @keyframes flotar {
-            0% {
-                transform: translateY(0px) rotate(0deg);
+            /* Contenedor de los textos NAMI repetidos */
+            #fondo-animado .nami-patron {
+                display: grid;
+                grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+                grid-auto-rows: 150px;
+                width: 100%;
+                height: 100%;
+                opacity: 0.1;
+                animation: moverFondo 20s linear infinite;
             }
 
-            50% {
-                transform: translateY(-20px) rotate(5deg);
+        .nami-patron span {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 60px;
+            font-weight: bold;
+            color: #000000;
+            font-family: Arial, sans-serif;
+            user-select: none;
+            transform: rotate(-15deg);
+        }
+
+        /* Movimiento animado del fondo */
+        @keyframes moverFondo {
+            0% {
+                transform: translateY(0);
             }
 
             100% {
-                transform: translateY(0px) rotate(0deg);
+                transform: translateY(-100px);
             }
         }
 
-        /* Cuando se hace scroll, cambiamos el color */
+        /* Cuando se hace scroll */
         body.scroll-activo #fondo-animado {
-            background-color: #000;
+            background-color: #ffd9ec; /* Rosa pastel suave */
         }
 
-        body.scroll-activo .nami-text {
-            color: rgba(255, 255, 255, 0.05);
+        body.scroll-activo .nami-patron span {
+            color: #ff70c6; /* Rosado más fuerte pero suave */
         }
+
 
         body {
             margin: 0;
@@ -329,7 +338,12 @@
     </header>
 
     <div id="fondo-animado">
-        <span class="nami-text">NAMI</span>
+        <div class="nami-patron">
+            <span>NAMI</span><span>NAMI</span><span>NAMI</span><span>NAMI</span><span>NAMI</span>
+            <span>NAMI</span><span>NAMI</span><span>NAMI</span><span>NAMI</span><span>NAMI</span>
+            <span>NAMI</span><span>NAMI</span><span>NAMI</span><span>NAMI</span><span>NAMI</span>
+            <span>NAMI</span><span>NAMI</span><span>NAMI</span><span>NAMI</span><span>NAMI</span>
+        </div>
     </div>
 
     <div class="menu">
@@ -437,6 +451,7 @@
             }
         });
     </script>
+
 
 </body>
 </html>
