@@ -2,16 +2,18 @@
 <html lang="es">
 <head>
     <meta charset="UTF-8">
-    <title>Mi Tienda</title>
+    <title>Mi Mercado</title>
     <style>
         body {
             margin: 0;
             font-family: Arial, sans-serif;
-            background-color: #f5f5f5;
+            background: #f5f5f5;
         }
 
+        /* Barra superior */
         header {
-            background-color: #ffe600;
+            background-color: #ff69b4;
+            color: white;
             padding: 10px 20px;
             display: flex;
             align-items: center;
@@ -21,101 +23,120 @@
         .logo {
             font-size: 24px;
             font-weight: bold;
-            color: #333;
-            text-decoration: none;
         }
 
-        .search-box {
-            flex: 1;
-            margin: 0 20px;
+        .search-bar input {
+            padding: 5px;
+            width: 300px;
+            border-radius: 5px;
+            border: none;
         }
 
-            .search-box input {
-                width: 100%;
-                padding: 8px;
-                font-size: 16px;
-                border: none;
-                border-radius: 4px;
-            }
-
-        nav {
-            background-color: #fff;
-            padding: 10px 20px;
-            border-bottom: 1px solid #ccc;
+        .menu {
+            margin-top: 10px;
+            background: #ffb6c1;
+            padding: 10px;
+            display: flex;
+            gap: 20px;
+            justify-content: center;
         }
 
-            nav a {
-                margin-right: 15px;
+            .menu a {
                 text-decoration: none;
                 color: #333;
                 font-weight: bold;
             }
 
-        .product-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 20px;
-            padding: 20px;
+        /* Banner */
+        .banner {
+            background: linear-gradient(to right, #ff69b4, #ffb6c1);
+            padding: 40px;
+            color: white;
+            text-align: center;
         }
 
-        .product-card {
-            background-color: #fff;
-            border: 1px solid #ddd;
-            border-radius: 8px;
+            .banner h1 {
+                font-size: 36px;
+                margin-bottom: 10px;
+            }
+
+        /* Productos */
+        .productos {
+            display: flex;
+            gap: 20px;
+            padding: 20px;
+            overflow-x: auto;
+        }
+
+        .producto {
+            background: white;
+            border-radius: 10px;
             padding: 10px;
-            text-align: center;
+            width: 200px;
             box-shadow: 0 2px 5px rgba(0,0,0,0.1);
         }
 
-            .product-card img {
-                max-width: 100%;
-                height: auto;
-                border-radius: 4px;
+            .producto img {
+                width: 100%;
+                border-radius: 5px;
             }
 
-            .product-card h3 {
-                font-size: 16px;
+            .producto h4 {
                 margin: 10px 0 5px;
             }
 
-            .product-card p {
-                font-weight: bold;
-                color: #28a745;
+            .producto p {
+                margin: 0;
+                color: green;
             }
     </style>
 </head>
 <body>
+
     <header>
-        <a href="#" class="logo">MiTienda</a>
-        <div class="search-box">
-            <input type="text" placeholder="Buscar productos...">
+        <div class="logo">Mi Mercado</div>
+        <div class="search-bar">
+            <input type="text" placeholder="Buscar productos, marcas...">
         </div>
+        <div>👤 Nicolás</div>
     </header>
 
-    <nav>
-        <a href="#">Inicio</a>
-        <a href="#">Ofertas</a>
+    <div class="menu">
         <a href="#">Categorías</a>
-        <a href="#">Contacto</a>
-    </nav>
+        <a href="#">Ofertas</a>
+        <a href="#">Cupones</a>
+        <a href="#">Moda</a>
+        <a href="#">Ayuda</a>
+    </div>
 
-    <section class="product-grid">
-        <div class="product-card">
+    <div class="banner">
+        <h1>Encuentra tu estilo</h1>
+        <p>Devoluciones simples • Hasta 35% OFF</p>
+    </div>
+
+    <div class="productos">
+        <div class="producto">
             <img src="https://via.placeholder.com/200" alt="Producto 1">
-            <h3>Producto 1</h3>
+            <h4>Producto 1</h4>
             <p>$50.000</p>
         </div>
-        <div class="product-card">
+        <div class="producto">
             <img src="https://via.placeholder.com/200" alt="Producto 2">
-            <h3>Producto 2</h3>
-            <p>$75.000</p>
+            <h4>Producto 2</h4>
+            <p>$89.900</p>
         </div>
-        <div class="product-card">
+        <div class="producto">
             <img src="https://via.placeholder.com/200" alt="Producto 3">
-            <h3>Producto 3</h3>
-            <p>$99.000</p>
+            <h4>Producto 3</h4>
+            <p>$120.000</p>
         </div>
-    </section>
+        <div class="producto">
+            <img src="https://via.placeholder.com/200" alt="Producto 4">
+            <h4>Producto 4</h4>
+            <p>$9.900</p>
+        </div>
+    </div>
+
 </body>
 </html>
 
