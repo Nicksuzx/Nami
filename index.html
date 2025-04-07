@@ -79,23 +79,46 @@
         }
 
         .carrusel {
-            display: flex;
-            width: 220px;
+            width: 320px;
+            height: 420px;
             overflow: hidden;
             position: relative;
         }
 
         .slide {
-            min-width: 100%;
-            transition: transform 0.5s ease-in-out;
-            opacity: 0;
             position: absolute;
             top: 0;
             left: 0;
+            width: 100%;
+            height: 100%;
+            opacity: 0;
+            transform: scale(0.95);
+            transition: opacity 0.7s ease, transform 0.7s ease;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
         }
+
+            .slide img {
+                width: 280px;
+                height: 280px;
+                object-fit: contain;
+                border-radius: 10px;
+            }
+
+            .slide h4 {
+                margin-top: 15px;
+            }
+
+            .slide p {
+                margin: 5px 0;
+                color: green;
+            }
 
             .slide.activo {
                 opacity: 1;
+                transform: scale(1);
                 position: relative;
             }
 
@@ -127,6 +150,8 @@
 
             .producto img {
                 width: 100%;
+                height: 200px;
+                object-fit: contain;
                 border-radius: 5px;
             }
 
@@ -231,13 +256,8 @@
             mostrarSlide(indice);
         }
 
-        btnDer.addEventListener('click', () => {
-            siguienteSlide();
-        });
-
-        btnIzq.addEventListener('click', () => {
-            anteriorSlide();
-        });
+        btnDer.addEventListener('click', siguienteSlide);
+        btnIzq.addEventListener('click', anteriorSlide);
 
         function iniciarAutoSlide() {
             intervalo = setInterval(siguienteSlide, 5000);
