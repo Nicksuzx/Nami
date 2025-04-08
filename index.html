@@ -399,31 +399,34 @@
         }
 
         .carouselbanner-slide {
+            position: relative;
+            width: 100%;
+            height: 423px;
+            display: none;
+            justify-content: center;
+            align-items: center;
             transition: opacity 1s ease-in-out;
         }
 
-            .carouselbanner-slide img.banner-img {
-                position: absolute;
-                top: 0;
-                left: 0;
-                width: 1546px;
-                height: 423px;
-                object-fit: cover;
-                opacity: 0;
-                transition: opacity 2s ease-in-out;
+            .carouselbanner-slide.active {
+                display: flex;
             }
 
-            .carouselbanner-slide.active img.banner-img {
-                opacity: 1;
-            }
+        .banner-img {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: opacity 2s ease-in-out;
+            opacity: 0;
+            z-index: 1;
+        }
 
-            .carouselbanner-slide img.persona-img {
-                position: absolute;
-                bottom: 0;
-                right: 0;
-                height: 100%;
-                transition: opacity 2s ease-in-out;
-            }
+        .carouselbanner-slide .personaje {
+            position: relative;
+            z-index: 2;
+        }
+
 
         .flechasbanner-btn {
             position: absolute;
@@ -632,16 +635,21 @@
             slides.forEach((slide, i) => {
                 if (i === index) {
                     slide.classList.add("active");
+                    slide.querySelector(".banner-img").style.opacity = "1";
+                    slide.style.display = "flex"; // Asegura que el personaje esté visible
                 } else {
                     slide.classList.remove("active");
+                    slide.querySelector(".banner-img").style.opacity = "0";
+                    slide.style.display = "none"; // Oculta otros personajes
                 }
             });
         }
 
         function nextSlide() {
-            // Cambia solo el fondo del banner a los 8 segundos
+            currentSlide = (currentSlide + 1) % slides.length;
+
+            // Mostrar imagen del banner (fondo) suavemente a los 8s
             setTimeout(() => {
-                currentSlide = (currentSlide + 1) % slides.length;
                 slides.forEach((slide, i) => {
                     if (i === currentSlide) {
                         slide.querySelector(".banner-img").style.opacity = "1";
@@ -649,22 +657,23 @@
                         slide.querySelector(".banner-img").style.opacity = "0";
                     }
                 });
-            }, 8000); // 8 segundos
+            }, 8000);
 
-            // Cambia el personaje completo a los 10 segundos
+            // Mostrar slide completo (con persona) a los 10s
             setTimeout(() => {
                 showSlide(currentSlide);
-            }, 10000); // 10 segundos
+            }, 10000);
         }
 
-        // Iniciar con el primer slide
+        // Mostrar el primero al inicio
         showSlide(currentSlide);
 
-        // Repetir el carrusel cada 10 segundos
+        // Repetir el carrusel cada 10s
         setInterval(nextSlide, 10000);
     </script>
 
-    
+
+
 
     <script>
         // Carrusel central con personaje (el que está más abajo)
