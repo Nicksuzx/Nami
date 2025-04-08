@@ -4,89 +4,194 @@
     <meta charset="UTF-8">
     <title>NAMI - mugs</title>
     <style>
+
+        /* Fondo animado */
+        #fondo-animado {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100vh;
+            z-index: -1;
+            background-color: white;
+            transition: background-color 0.5s ease;
+            overflow: hidden;
+        }
+
+            /* Contenedor de los textos NAMI repetidos */
+            #fondo-animado .nami-patron {
+                display: grid;
+                grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+                grid-auto-rows: 150px;
+                width: 100%;
+                height: 100%;
+                opacity: 0.1;
+                animation: moverFondo 20s linear infinite;
+            }
+
+        .nami-patron span {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 60px;
+            font-weight: bold;
+            color: #000000;
+            font-family: Arial, sans-serif;
+            user-select: none;
+            transform: rotate(-15deg);
+        }
+
+        /* Movimiento animado del fondo */
+        @keyframes moverFondo {
+            0% {
+                transform: translateY(0);
+            }
+
+            100% {
+                transform: translateY(-100px);
+            }
+        }
+
+        /* Cuando se hace scroll */
+        body.scroll-activo #fondo-animado {
+            background-color: #ffd9ec; /* Rosa pastel suave */
+        }
+
+        body.scroll-activo .nami-patron span {
+            color: #ff70c6; /* Rosado más fuerte pero suave */
+        }
+
+
         body {
             margin: 0;
-            font-family: 'Arial', sans-serif;
-            background: linear-gradient(to bottom, #ffeef8, #fff);
+            font-family: Arial, sans-serif;
+            background: #f5f5f5;
         }
 
         header {
-            background-color: #f3cce8;
-            color: #8b005d;
-            padding: 10px 0;
-            text-align: center;
-            font-size: 1.5em;
-            font-weight: bold;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            background-color: #ff69b4;
+            color: white;
+            padding: 10px 20px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .logo-img {
+            height: 60px;
+            width: 60px;
+            border-radius: 50%;
+            border: 3px solid purple;
+            background-color: white;
+            padding: 2px;
+            box-shadow: 0 0 10px rgba(128, 0, 128, 0.5);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+            .logo-img:hover {
+                transform: scale(1.1);
+                box-shadow: 0 0 15px rgba(128, 0, 128, 0.8);
+            }
+
+        .search-bar input {
+            padding: 5px;
+            width: 300px;
+            border-radius: 5px;
+            border: none;
         }
 
         .menu {
-            display: flex;
-            justify-content: center;
-            background-color: #fff;
+            margin-top: 10px;
+            background: #ffb6c1;
             padding: 10px;
-            gap: 30px;
+            display: flex;
+            gap: 20px;
+            justify-content: center;
         }
 
             .menu a {
                 text-decoration: none;
-                color: #8b005d;
+                color: #333;
                 font-weight: bold;
-                transition: color 0.3s;
             }
 
-                .menu a:hover {
-                    color: #d946ef;
-                }
+        .banner {
+            background: linear-gradient(to right, #ff69b4, #ffb6c1);
+            padding: 40px;
+            color: white;
+            text-align: center;
+        }
+
+            .banner h1 {
+                font-size: 36px;
+                margin-bottom: 10px;
+            }
 
         .carrusel-container {
             position: relative;
-            width: 80%;
-            margin: 30px auto;
+            width: 600px;
+            height: 600px; 
             overflow: hidden;
-            border-radius: 10px;
-            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+            margin: 0 auto;
         }
 
         .carrusel {
             display: flex;
-            transition: transform 0.5s ease-in-out;
+            transition: transform 0.6s ease-in-out;
+            width: 100%;
+            height: 100%;
         }
 
         .slide {
             min-width: 100%;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-start;
+            align-items: center;
+            padding-top: 20px;
             box-sizing: border-box;
-            text-align: center;
-            background: #fff;
         }
 
+
             .slide img {
-                width: 100%;
-                max-height: 400px;
-                object-fit: cover;
+                width: 500px;
+                height: 500px;
+                object-fit: contain;
+                border-radius: 10px;
+                transition: transform 0.3s;
             }
 
             .slide p {
-                margin: 10px 0;
-                font-size: 1.2em;
-                color: #8b005d;
+                text-align: center;
+                font-weight: bold;
+                margin-top: 10px;
+                font-size: 18px;
             }
 
+        /* Botones */
         .btn-nav {
             position: absolute;
             top: 50%;
             transform: translateY(-50%);
-            background-color: rgba(255, 255, 255, 0.7);
-            border: none;
-            font-size: 2em;
+            background: white;
+            border: 1px solid #ccc;
+            border-radius: 50%;
+            width: 45px;
+            height: 45px;
+            font-size: 22px;
+            color: #333;
             cursor: pointer;
-            z-index: 2;
-            padding: 10px;
-            color: #8b005d;
+            box-shadow: 0 0 8px rgba(0,0,0,0.15);
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
         }
 
             .btn-nav:hover {
-                background-color: rgba(255, 255, 255, 1);
+                box-shadow: 0 0 12px rgba(0,0,0,0.25);
+                transform: translateY(-50%) scale(1.05);
             }
 
         .prev {
@@ -97,79 +202,224 @@
             right: 10px;
         }
 
-        .progreso-carrusel {
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            height: 6px;
-            width: 100%;
-            background-color: #f3cce8;
-            overflow: hidden;
-            border-bottom-left-radius: 10px;
-            border-bottom-right-radius: 10px;
+        .productos {
+            display: flex;
+            gap: 20px;
+            padding: 20px;
+            justify-content: center;
+            flex-wrap: wrap;
         }
 
-        .progreso-barra {
-            height: 100%;
-            width: 0%;
-            background: linear-gradient(to right, #d946ef, #ec4899);
-            transition: width 0.2s ease-in-out;
+        .producto {
+            background: white;
+            border-radius: 10px;
+            padding: 10px;
+            width: 200px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
         }
 
-        .formulario {
-            text-align: center;
-            margin: 30px auto;
-        }
-
-            .formulario a {
-                text-decoration: none;
-                background-color: #8b005d;
-                color: white;
-                padding: 12px 25px;
-                border-radius: 25px;
-                font-size: 1.1em;
-                transition: background-color 0.3s;
+            .producto img {
+                width: 100%;
+                height: 200px;
+                object-fit: contain;
+                border-radius: 5px;
             }
 
-                .formulario a:hover {
-                    background-color: #d946ef;
+            .producto h4 {
+                margin: 10px 0 5px;
+            }
+
+            .producto p {
+                margin: 0;
+                color: green;
+            }
+        .banner h1 {
+            animation: fadeInBanner 1.2s ease forwards, shineText 5s linear infinite;
+            background: linear-gradient(90deg, white, #fff0f5, white);
+            background-size: 200% auto;
+            color: transparent;
+            background-clip: text;
+            -webkit-background-clip: text;
+        }
+
+        .boton-container {
+            text-align: center;
+            margin-top: 80px;
+        }
+
+        .boton-personaliza {
+            background: linear-gradient(135deg, #f06292, #ba68c8);
+            border: none;
+            color: white;
+            padding: 30px 60px;
+            font-size: 36px;
+            font-weight: bold;
+            border-radius: 60px;
+            cursor: pointer;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+        }
+
+            .boton-personaliza:hover {
+                transform: scale(1.05);
+                box-shadow: 0 6px 14px rgba(0, 0, 0, 0.3);
+            }
+
+        .footer-info {
+            background-color: #f8f0f8;
+            color: #444;
+            padding: 40px 20px 20px;
+            font-family: sans-serif;
+            border-top: 2px solid #ffb3e6;
+        }
+
+        .footer-top {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-around;
+            text-align: center;
+            gap: 30px;
+            margin-bottom: 30px;
+        }
+
+        .footer-item img {
+            width: 50px;
+            height: 50px;
+            margin-bottom: 10px;
+        }
+
+        .footer-item h4 {
+            font-size: 18px;
+            color: #d14fa1;
+            margin-bottom: 5px;
+        }
+
+        .footer-item p {
+            font-size: 14px;
+            max-width: 250px;
+            margin: auto;
+        }
+
+        .footer-bottom {
+            border-top: 1px solid #e0cce0;
+            padding-top: 20px;
+            text-align: center;
+        }
+
+        .footer-links {
+            margin-bottom: 10px;
+        }
+
+            .footer-links a {
+                margin: 0 10px;
+                font-size: 14px;
+                color: #a161a9;
+                text-decoration: none;
+            }
+
+                .footer-links a:hover {
+                    text-decoration: underline;
+                    color: #d14fa1;
                 }
 
-        footer {
-            background-color: #f3cce8;
-            color: #8b005d;
-            text-align: center;
-            padding: 10px;
-            font-size: 0.9em;
+        @media (max-width: 768px) {
+            .footer-top {
+                flex-direction: column;
+                align-items: center;
+            }
         }
 
-        @media screen and (max-width: 768px) {
-            .carrusel-container {
-                width: 95%;
-            }
 
-            .menu {
-                flex-direction: column;
-                gap: 10px;
+        @media (max-width: 768px) {
+            .carrusel-container {
+                width: 100%;
+                height: auto;
             }
 
             .slide img {
-                max-height: 300px;
+                width: 90%;
+                height: auto;
+            }
+
+            .btn-nav {
+                width: 35px;
+                height: 35px;
+                font-size: 18px;
+            }
+
+            .productos {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .producto {
+                width: 90%;
+            }
+
+            .search-bar input {
+                width: 150px;
+            }
+
+            header {
+                flex-direction: column;
+                gap: 10px;
             }
         }
+
+        @keyframes fadeInBanner {
+            from {
+                opacity: 0;
+                transform: translateY(-20px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes shineText {
+            0% {
+                background-position: -500%;
+            }
+
+            100% {
+                background-position: 500%;
+            }
+        }
+
     </style>
 </head>
 <body>
 
     <header>
-        ¡Bienvenid@ a NAMI!
+        <img src="Images/logo.png" alt="NAMI" class="logo-img">
+        <div class="search-bar">
+            <input type="text" placeholder="Buscar productos, marcas...">
+        </div>
+        <div>👤 NAMI</div>
     </header>
 
+    <div id="fondo-animado">
+        <div class="nami-patron">
+            <span>NAMI</span><span>NAMI</span><span>NAMI</span><span>NAMI</span><span>NAMI</span>
+            <span>NAMI</span><span>NAMI</span><span>NAMI</span><span>NAMI</span><span>NAMI</span>
+            <span>NAMI</span><span>NAMI</span><span>NAMI</span><span>NAMI</span><span>NAMI</span>
+            <span>NAMI</span><span>NAMI</span><span>NAMI</span><span>NAMI</span><span>NAMI</span>
+        </div>
+    </div>
+
     <div class="menu">
-        <a href="#">Inicio</a>
-        <a href="#">Catálogo</a>
+        <a href="#">Categorías</a>
         <a href="#">Ofertas</a>
-        <a href="#">Contacto</a>
+        <a href="#">Cupones</a>
+        <a href="#">Moda</a>
+        <a href="#">Ayuda</a>
+    </div>
+
+    <div class="banner">
+        <h1>Encuentra tu estilo</h1>
+        <p>Devoluciones simples • Hasta 35% OFF</p>
     </div>
 
     <div class="carrusel-container">
@@ -179,73 +429,162 @@
                 <p>Producto 1<br>$15.000</p>
             </div>
             <div class="slide">
-                <img src="Products/producto2.png" alt="Mug térmico con diseño especial - NAMI">
+                <img src="Products/producto2.png" alt="Mug térmico con diseño de para un dia especial - NAMI">
                 <p>Producto 2<br>$15.000</p>
             </div>
             <div class="slide">
-                <img src="Products/producto3.png" alt="Producto 3 NAMI">
+                <img src="Products/producto3.png" alt="Producto 3 etc mucho texto">
                 <p>Producto 3<br>$15.000</p>
             </div>
         </div>
-
-        <!-- Barra de progreso -->
-        <div class="progreso-carrusel">
-            <div class="progreso-barra" id="barraProgreso"></div>
-        </div>
-
-        <!-- Botones de navegación -->
         <button class="btn-nav prev" onclick="prevSlide()">❮</button>
         <button class="btn-nav next" onclick="nextSlide()">❯</button>
     </div>
 
-    <div class="formulario">
-        <a href="https://forms.gle/YOURFORMHERE" target="_blank">Pedir el tuyo</a>
+    <div style="height: 40px;"></div> <!-- Espacio entre algo -->
+    <!-- Botón con enlace a Google Forms -->
+    <div style="display: flex; justify-content: center; margin-bottom: 50px;">
+        <a href="https://docs.google.com/forms/d/e/1FAIpQLSdDoWLjfV4q1l2yuTth3wTRTGsJRNISUOgCG0IjHk7CMxzgIA/viewform?usp=preview" target="_blank" style="text-decoration: none;">
+            <button style="
+      background: linear-gradient(to right, #d946ef, #ec4899);
+      color: white;
+      border: none;
+      border-radius: 20px;
+      padding: 20px 40px;
+      font-size: 20px;
+      font-weight: bold;
+      cursor: pointer;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+      transition: transform 0.2s;
+    " onmouseover="this.style.transform='scale(1.05)'" onmouseout="this.style.transform='scale(1)'">
+                PERSONALIZA EL TUYO AHORA
+            </button>
+        </a>
     </div>
 
-    <footer>
-        © 2025 NAMI. Todos los derechos reservados.
+
+    <div style="height: 40px;"></div> <!-- Espacio entre algo -->
+
+    <div class="productos">
+        <div class="producto">
+            <img src="Products/producto1.png" alt="Tazas de cerámica con frase divertida">
+            <h4>Producto 1</h4>
+            <p>$89.900</p>
+        </div>
+        <div class="producto">
+            <img src="Products/producto2.png" alt="Taza de cerámica con frase de mamá">
+            <h4>Producto 2</h4>
+            <p>$89.900</p>
+        </div>
+        <div class="producto">
+            <img src="Products/producto3.png" alt="Mug estilo festividad">
+            <h4>Producto 3</h4>
+            <p>$120.000</p>
+        </div>
+        <div class="producto">
+            <img src="Products/producto4.png" alt="Taza para empresas - blanca">
+            <h4>Producto 4</h4>
+            <p>$9.900</p>
+        </div>
+    </div>
+
+    <!-- Espaciador decorativo -->
+    <div style="
+        height: 60px;
+        background: linear-gradient(to right, #f8d8f8, #fce4ec, #f8d8f8);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-family: 'Poppins', sans-serif;
+        color: #c97ab4;
+        font-size: 18px;
+        font-weight: 500;
+        letter-spacing: 1px;
+        ">
+        ✨ Hecho con amor por NAMI ✨
+    </div>
+
+    <div style="height: 40px;"></div> <!-- Espacio entre algo -->
+
+    <footer class="footer-info">
+        <div class="footer-top">
+            <div class="footer-item">
+                <img src="https://cdn-icons-png.flaticon.com/512/633/633611.png" alt="Pago seguro" />
+                <h4>Paga como quieras</h4>
+                <p>Tarjeta de crédito, débito, transferencia o en efectivo. ¡Fácil y seguro!</p>
+            </div>
+            <div class="footer-item">
+                <img src="https://cdn-icons-png.flaticon.com/512/104/104678.png" alt="Envío gratis" />
+                <h4>Envíos desde $60.000</h4>
+                <p>Recibe tus productos sin costo adicional en pedidos seleccionados.</p>
+            </div>
+            <div class="footer-item">
+                <img src="https://cdn-icons-png.flaticon.com/512/942/942748.png" alt="Protección" />
+                <h4>Protección total</h4>
+                <p>Tu compra está protegida de principio a fin. Devoluciones sin complicaciones.</p>
+            </div>
+        </div>
+
+        <div class="footer-bottom">
+            <div class="footer-links">
+                <a href="#">Sobre nosotros</a>
+                <a href="#">Términos y condiciones</a>
+                <a href="#">Privacidad</a>
+                <a href="#">Ayuda</a>
+                <a href="#">Contacto</a>
+            </div>
+            <p class="copyright">
+                © 2025 NAMI S.A.S - Todos los derechos reservados. Calle Imaginaria 123 - Ciudad Creativa.
+            </p>
+        </div>
     </footer>
 
-    <script>
-        const carrusel = document.getElementById("carrusel");
-        const slides = document.querySelectorAll(".slide");
-        const barraProgreso = document.getElementById("barraProgreso");
-        let currentIndex = 0;
-        let intervalo;
 
-        function updateCarrusel() {
+    <script>
+        let currentIndex = 0;
+        const slides = document.querySelectorAll(".slide");
+        const carrusel = document.getElementById("carrusel");
+        let interval;
+
+        function showSlide(index) {
+            currentIndex = (index + slides.length) % slides.length;
             carrusel.style.transform = `translateX(-${currentIndex * 100}%)`;
-            resetBarra();
         }
 
         function nextSlide() {
-            currentIndex = (currentIndex + 1) % slides.length;
-            updateCarrusel();
+            showSlide(currentIndex + 1);
         }
 
         function prevSlide() {
-            currentIndex = (currentIndex - 1 + slides.length) % slides.length;
-            updateCarrusel();
+            showSlide(currentIndex - 1);
         }
 
-        function resetBarra() {
-            barraProgreso.style.transition = 'none';
-            barraProgreso.style.width = '0%';
-            setTimeout(() => {
-                barraProgreso.style.transition = 'width 5s linear';
-                barraProgreso.style.width = '100%';
-            }, 50);
+        function startAutoSlide() {
+            interval = setInterval(nextSlide, 5000);
         }
 
-        function iniciarAutoCarrusel() {
-            updateCarrusel();
-            resetBarra();
-            intervalo = setInterval(() => {
-                nextSlide();
-            }, 5000);
+        function stopAutoSlide() {
+            clearInterval(interval);
         }
 
-        window.onload = iniciarAutoCarrusel;
+        // Iniciar automático
+        startAutoSlide();
+
+        // Pausar cuando el mouse está encima
+        carrusel.addEventListener("mouseenter", stopAutoSlide);
+        carrusel.addEventListener("mouseleave", startAutoSlide);
     </script>
+
+    <script>
+        window.addEventListener('scroll', () => {
+            const scrollPos = window.scrollY;
+            if (scrollPos > 100) {
+                document.body.classList.add('scroll-activo');
+            } else {
+                document.body.classList.remove('scroll-activo');
+            }
+        });
+    </script>
+
 </body>
 </html>
