@@ -399,29 +399,30 @@
         }
 
         .carouselbanner-slide {
-            width: 1546px;
-            height: 423px;
-            position: absolute;
-            top: 0;
-            left: 0;
-            display: none;
+            transition: opacity 1s ease-in-out;
         }
 
-            .carouselbanner-slide.active {
-                display: block;
-            }
-
             .carouselbanner-slide img.banner-img {
+                position: absolute;
+                top: 0;
+                left: 0;
                 width: 1546px;
                 height: 423px;
                 object-fit: cover;
+                opacity: 0;
+                transition: opacity 2s ease-in-out;
+            }
+
+            .carouselbanner-slide.active img.banner-img {
+                opacity: 1;
             }
 
             .carouselbanner-slide img.persona-img {
                 position: absolute;
                 bottom: 0;
                 right: 0;
-                height: 100%; /* o ajusta según el tamaño del personaje */
+                height: 100%;
+                transition: opacity 2s ease-in-out;
             }
 
         .flechasbanner-btn {
@@ -623,36 +624,47 @@
         <button onclick="nextSlidePersonaje()" style="position: absolute; top: 50%; right: 10px; transform: translateY(-50%); font-size: 30px;">➡️</button>
     </div>
 
-    <!-- ...todo tu HTML hasta llegar a los scripts está igual... -->
-
     <script>
-        // Carrusel de banners (el de las personas)
-        let bannerIndex = 0;
-        const slidesBanner = document.querySelectorAll('.carouselbanner-slide');
+        const slides = document.querySelectorAll(".carouselbanner-slide");
+        let currentSlide = 0;
 
-        function showBannerSlide(index) {
-            slidesBanner.forEach((slide, i) => {
-                slide.classList.remove('active', 'exiting');
+        function showSlide(index) {
+            slides.forEach((slide, i) => {
                 if (i === index) {
-                    slide.classList.add('active');
+                    slide.classList.add("active");
+                } else {
+                    slide.classList.remove("active");
                 }
             });
         }
 
-        function carouselbannerNext() {
-            slidesBanner[bannerIndex].classList.add('exiting');
-            bannerIndex = (bannerIndex + 1) % slidesBanner.length;
-            setTimeout(() => showBannerSlide(bannerIndex), 300);
+        function nextSlide() {
+            // Cambia solo el fondo del banner a los 8 segundos
+            setTimeout(() => {
+                currentSlide = (currentSlide + 1) % slides.length;
+                slides.forEach((slide, i) => {
+                    if (i === currentSlide) {
+                        slide.querySelector(".banner-img").style.opacity = "1";
+                    } else {
+                        slide.querySelector(".banner-img").style.opacity = "0";
+                    }
+                });
+            }, 8000); // 8 segundos
+
+            // Cambia el personaje completo a los 10 segundos
+            setTimeout(() => {
+                showSlide(currentSlide);
+            }, 10000); // 10 segundos
         }
 
-        function carouselbannerPrev() {
-            slidesBanner[bannerIndex].classList.add('exiting');
-            bannerIndex = (bannerIndex - 1 + slidesBanner.length) % slidesBanner.length;
-            setTimeout(() => showBannerSlide(bannerIndex), 300);
-        }
+        // Iniciar con el primer slide
+        showSlide(currentSlide);
 
-        showBannerSlide(bannerIndex);
+        // Repetir el carrusel cada 10 segundos
+        setInterval(nextSlide, 10000);
     </script>
+
+    
 
     <script>
         // Carrusel central con personaje (el que está más abajo)
