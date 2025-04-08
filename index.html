@@ -3,36 +3,174 @@
 <head>
     <meta charset="UTF-8">
     <title>NAMI - mugs</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
-        /* ... (Todo tu CSS actual se mantiene igual hasta el carrusel) */
-
-        .indicador {
-            position: absolute;
-            bottom: 15px;
-            left: 50%;
-            transform: translateX(-50%);
-            display: flex;
-            gap: 8px;
-            z-index: 1;
+        body {
+            margin: 0;
+            font-family: 'Arial', sans-serif;
+            background: linear-gradient(to bottom, #ffeef8, #fff);
         }
 
-            .indicador span {
-                width: 12px;
-                height: 12px;
-                border-radius: 50%;
-                background-color: #ccc;
+        header {
+            background-color: #f3cce8;
+            color: #8b005d;
+            padding: 10px 0;
+            text-align: center;
+            font-size: 1.5em;
+            font-weight: bold;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        .menu {
+            display: flex;
+            justify-content: center;
+            background-color: #fff;
+            padding: 10px;
+            gap: 30px;
+        }
+
+            .menu a {
+                text-decoration: none;
+                color: #8b005d;
+                font-weight: bold;
+                transition: color 0.3s;
+            }
+
+                .menu a:hover {
+                    color: #d946ef;
+                }
+
+        .carrusel-container {
+            position: relative;
+            width: 80%;
+            margin: 30px auto;
+            overflow: hidden;
+            border-radius: 10px;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+        }
+
+        .carrusel {
+            display: flex;
+            transition: transform 0.5s ease-in-out;
+        }
+
+        .slide {
+            min-width: 100%;
+            box-sizing: border-box;
+            text-align: center;
+            background: #fff;
+        }
+
+            .slide img {
+                width: 100%;
+                max-height: 400px;
+                object-fit: cover;
+            }
+
+            .slide p {
+                margin: 10px 0;
+                font-size: 1.2em;
+                color: #8b005d;
+            }
+
+        .btn-nav {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background-color: rgba(255, 255, 255, 0.7);
+            border: none;
+            font-size: 2em;
+            cursor: pointer;
+            z-index: 2;
+            padding: 10px;
+            color: #8b005d;
+        }
+
+            .btn-nav:hover {
+                background-color: rgba(255, 255, 255, 1);
+            }
+
+        .prev {
+            left: 10px;
+        }
+
+        .next {
+            right: 10px;
+        }
+
+        .progreso-carrusel {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            height: 6px;
+            width: 100%;
+            background-color: #f3cce8;
+            overflow: hidden;
+            border-bottom-left-radius: 10px;
+            border-bottom-right-radius: 10px;
+        }
+
+        .progreso-barra {
+            height: 100%;
+            width: 0%;
+            background: linear-gradient(to right, #d946ef, #ec4899);
+            transition: width 0.2s ease-in-out;
+        }
+
+        .formulario {
+            text-align: center;
+            margin: 30px auto;
+        }
+
+            .formulario a {
+                text-decoration: none;
+                background-color: #8b005d;
+                color: white;
+                padding: 12px 25px;
+                border-radius: 25px;
+                font-size: 1.1em;
                 transition: background-color 0.3s;
             }
 
-                .indicador span.activo {
-                    background-color: #ff69b4;
+                .formulario a:hover {
+                    background-color: #d946ef;
                 }
+
+        footer {
+            background-color: #f3cce8;
+            color: #8b005d;
+            text-align: center;
+            padding: 10px;
+            font-size: 0.9em;
+        }
+
+        @media screen and (max-width: 768px) {
+            .carrusel-container {
+                width: 95%;
+            }
+
+            .menu {
+                flex-direction: column;
+                gap: 10px;
+            }
+
+            .slide img {
+                max-height: 300px;
+            }
+        }
     </style>
 </head>
 <body>
 
-    <!-- ... (todo lo anterior igual, incluyendo header, fondo animado, menú, banner) -->
+    <header>
+        ¡Bienvenid@ a NAMI!
+    </header>
+
+    <div class="menu">
+        <a href="#">Inicio</a>
+        <a href="#">Catálogo</a>
+        <a href="#">Ofertas</a>
+        <a href="#">Contacto</a>
+    </div>
 
     <div class="carrusel-container">
         <div class="carrusel" id="carrusel">
@@ -41,70 +179,73 @@
                 <p>Producto 1<br>$15.000</p>
             </div>
             <div class="slide">
-                <img src="Products/producto2.png" alt="Mug térmico con diseño de para un dia especial - NAMI">
+                <img src="Products/producto2.png" alt="Mug térmico con diseño especial - NAMI">
                 <p>Producto 2<br>$15.000</p>
             </div>
             <div class="slide">
-                <img src="Products/producto3.png" alt="Producto 3 etc mucho texto">
+                <img src="Products/producto3.png" alt="Producto 3 NAMI">
                 <p>Producto 3<br>$15.000</p>
             </div>
         </div>
+
+        <!-- Barra de progreso -->
+        <div class="progreso-carrusel">
+            <div class="progreso-barra" id="barraProgreso"></div>
+        </div>
+
+        <!-- Botones de navegación -->
         <button class="btn-nav prev" onclick="prevSlide()">❮</button>
         <button class="btn-nav next" onclick="nextSlide()">❯</button>
-
-        <!-- Indicador de puntos -->
-        <div class="indicador" id="indicador">
-            <span class="activo"></span>
-            <span></span>
-            <span></span>
-        </div>
     </div>
 
-    <!-- ... (lo demás sigue igual como botón de Google Forms, productos, footer, etc) -->
+    <div class="formulario">
+        <a href="https://forms.gle/YOURFORMHERE" target="_blank">Pedir el tuyo</a>
+    </div>
+
+    <footer>
+        © 2025 NAMI. Todos los derechos reservados.
+    </footer>
 
     <script>
-        let indice = 0;
-        const carrusel = document.getElementById('carrusel');
-        const slides = document.querySelectorAll('.slide');
-        const totalSlides = slides.length;
-        const puntos = document.querySelectorAll('#indicador span');
+        const carrusel = document.getElementById("carrusel");
+        const slides = document.querySelectorAll(".slide");
+        const barraProgreso = document.getElementById("barraProgreso");
+        let currentIndex = 0;
+        let intervalo;
 
-        function actualizarIndicadores() {
-            puntos.forEach((punto, i) => {
-                punto.classList.toggle('activo', i === indice);
-            });
-        }
-
-        function mostrarSlide(index) {
-            carrusel.style.transform = `translateX(-${index * 100}%)`;
-            actualizarIndicadores();
+        function updateCarrusel() {
+            carrusel.style.transform = `translateX(-${currentIndex * 100}%)`;
+            resetBarra();
         }
 
         function nextSlide() {
-            indice = (indice + 1) % totalSlides;
-            mostrarSlide(indice);
+            currentIndex = (currentIndex + 1) % slides.length;
+            updateCarrusel();
         }
 
         function prevSlide() {
-            indice = (indice - 1 + totalSlides) % totalSlides;
-            mostrarSlide(indice);
+            currentIndex = (currentIndex - 1 + slides.length) % slides.length;
+            updateCarrusel();
         }
 
-        // Autoplay cada 5 segundos si el mouse no está encima
-        let autoplay = setInterval(nextSlide, 5000);
+        function resetBarra() {
+            barraProgreso.style.transition = 'none';
+            barraProgreso.style.width = '0%';
+            setTimeout(() => {
+                barraProgreso.style.transition = 'width 5s linear';
+                barraProgreso.style.width = '100%';
+            }, 50);
+        }
 
-        const carruselContainer = document.querySelector('.carrusel-container');
+        function iniciarAutoCarrusel() {
+            updateCarrusel();
+            resetBarra();
+            intervalo = setInterval(() => {
+                nextSlide();
+            }, 5000);
+        }
 
-        carruselContainer.addEventListener('mouseenter', () => {
-            clearInterval(autoplay);
-        });
-
-        carruselContainer.addEventListener('mouseleave', () => {
-            autoplay = setInterval(nextSlide, 5000);
-        });
-
-        // Iniciar indicadores
-        mostrarSlide(indice);
+        window.onload = iniciarAutoCarrusel;
     </script>
 </body>
 </html>
