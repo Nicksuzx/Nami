@@ -391,42 +391,32 @@
     </style>
     <style>
         .carouselbanner-container {
-            width: 1546px;
+            width: 100%;
+            max-width: 1546px;
             height: 423px;
-            margin: auto;
-            position: relative;
             overflow: hidden;
+            position: relative;
+            margin: auto;
         }
 
         .carouselbanner-slide {
-            position: relative;
-            width: 100%;
-            height: 423px;
-            display: none;
-            justify-content: center;
-            align-items: center;
-            transition: opacity 1s ease-in-out;
-        }
-
-            .carouselbanner-slide.active {
-                display: flex;
-            }
-
-        .banner-img {
             position: absolute;
             width: 100%;
             height: 100%;
-            object-fit: cover;
-            transition: opacity 2s ease-in-out;
             opacity: 0;
-            z-index: 1;
+            transition: opacity 2s ease-in-out;
         }
 
-        .carouselbanner-slide .personaje {
-            position: relative;
-            z-index: 2;
-        }
+            .carouselbanner-slide.active {
+                opacity: 1;
+                z-index: 1;
+            }
 
+        .banner-img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
 
         .flechasbanner-btn {
             position: absolute;
@@ -449,7 +439,6 @@
         }
     </style>
 
-
 </head>
 <body>
 
@@ -463,9 +452,13 @@
 
     <div id="fondo-animado">
         <div class="nami-patron">
+            <div style="height: 60px;"></div> <!-- Espacio entre algo -->
             <span>NAMI</span><span>NAMI</span><span>NAMI</span><span>NAMI</span><span>NAMI</span>
+            <div style="height: 40px;"></div> <!-- Espacio entre algo -->
             <span>NAMI</span><span>NAMI</span><span>NAMI</span><span>NAMI</span><span>NAMI</span>
+            <div style="height: 40px;"></div> <!-- Espacio entre algo -->
             <span>NAMI</span><span>NAMI</span><span>NAMI</span><span>NAMI</span><span>NAMI</span>
+            <div style="height: 40px;"></div> <!-- Espacio entre algo -->
             <span>NAMI</span><span>NAMI</span><span>NAMI</span><span>NAMI</span><span>NAMI</span>
         </div>
     </div>
@@ -478,21 +471,20 @@
         <a href="#">Ayuda</a>
     </div>
 
+    <div style="height: 40px;"></div> <!-- Espacio entre algo -->
+
     <div class="carouselbanner-container">
         <div class="carouselbanner-slide active">
             <img src="Images/banner1.png" class="banner-img">
-            <img src="Images/persona1.png" class="persona-img">
         </div>
         <div class="carouselbanner-slide">
             <img src="Images/banner2.png" class="banner-img">
-            <img src="Images/persona2.png" class="persona-img">
         </div>
-        <!-- Agrega más slides aquí si quieres -->
+
         <!-- Flechas -->
         <button class="flechasbanner-btn flechasbanner-left" onclick="carouselbannerPrev()">❮</button>
         <button class="flechasbanner-btn flechasbanner-right" onclick="carouselbannerNext()">❯</button>
     </div>
-
 
     <div class="carrusel-container">
         <div class="carrusel" id="carrusel">
@@ -630,47 +622,53 @@
     <script>
         const slides = document.querySelectorAll(".carouselbanner-slide");
         let currentSlide = 0;
+        let interval;
 
         function showSlide(index) {
             slides.forEach((slide, i) => {
+                slide.classList.remove("active");
                 if (i === index) {
                     slide.classList.add("active");
-                    slide.querySelector(".banner-img").style.opacity = "1";
-                    slide.style.display = "flex"; // Asegura que el personaje esté visible
-                } else {
-                    slide.classList.remove("active");
-                    slide.querySelector(".banner-img").style.opacity = "0";
-                    slide.style.display = "none"; // Oculta otros personajes
                 }
             });
         }
 
         function nextSlide() {
             currentSlide = (currentSlide + 1) % slides.length;
-
-            // Mostrar imagen del banner (fondo) suavemente a los 8s
-            setTimeout(() => {
-                slides.forEach((slide, i) => {
-                    if (i === currentSlide) {
-                        slide.querySelector(".banner-img").style.opacity = "1";
-                    } else {
-                        slide.querySelector(".banner-img").style.opacity = "0";
-                    }
-                });
-            }, 8000);
-
-            // Mostrar slide completo (con persona) a los 10s
-            setTimeout(() => {
-                showSlide(currentSlide);
-            }, 10000);
+            showSlide(currentSlide);
         }
 
-        // Mostrar el primero al inicio
-        showSlide(currentSlide);
+        function prevSlide() {
+            currentSlide = (currentSlide - 1 + slides.length) % slides.length;
+            showSlide(currentSlide);
+        }
 
-        // Repetir el carrusel cada 10s
-        setInterval(nextSlide, 10000);
+        function startCarousel() {
+            interval = setInterval(nextSlide, 10000); // Cambia cada 10 segundos
+        }
+
+        function resetCarousel() {
+            clearInterval(interval);
+            startCarousel();
+        }
+
+        // Conectar botones con funciones
+        function carouselbannerNext() {
+            nextSlide();
+            resetCarousel(); // reinicia el tiempo al cambiar manualmente
+        }
+
+        function carouselbannerPrev() {
+            prevSlide();
+            resetCarousel(); // reinicia el tiempo al cambiar manualmente
+        }
+
+        // Iniciar carrusel
+        showSlide(currentSlide);
+        startCarousel();
     </script>
+
+
 
 
 
