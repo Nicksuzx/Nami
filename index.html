@@ -391,76 +391,60 @@
     </style>
     <style>
         .carouselbanner-container {
+            width: 1546px;
+            height: 423px;
+            margin: auto;
             position: relative;
-            width: 100%;
             overflow: hidden;
         }
 
         .carouselbanner-slide {
+            width: 1546px;
+            height: 423px;
+            position: absolute;
+            top: 0;
+            left: 0;
             display: none;
-            width: 100%;
-            height: auto;
-            position: relative;
-            transition: opacity 0.5s ease-in-out;
         }
 
             .carouselbanner-slide.active {
-                display: flex;
-                justify-content: space-between;
-                align-items: center;
+                display: block;
             }
 
-        .banner-img {
-            width: 100%;
-            height: auto;
-            object-fit: cover;
-        }
+            .carouselbanner-slide img.banner-img {
+                width: 1546px;
+                height: 423px;
+                object-fit: cover;
+            }
 
-        .persona-img {
-            position: absolute;
-            right: 0;
-            bottom: 0;
-            max-height: 100%;
-            max-width: 30%;
-            transition: transform 0.7s ease-in-out;
-            transform: translateX(0);
-        }
-
-        .carouselbanner-slide.exiting .persona-img {
-            transform: translateX(50px); /* efecto de atraso bonito */
-        }
+            .carouselbanner-slide img.persona-img {
+                position: absolute;
+                bottom: 0;
+                right: 0;
+                height: 100%; /* o ajusta según el tamaño del personaje */
+            }
 
         .flechasbanner-btn {
             position: absolute;
             top: 50%;
             transform: translateY(-50%);
-            background-color: white;
+            background: rgba(255,255,255,0.6);
             border: none;
-            border-radius: 50%;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.15);
-            width: 40px;
-            height: 40px;
-            font-size: 20px;
-            color: #007bff;
+            font-size: 30px;
             cursor: pointer;
+            padding: 10px;
             z-index: 2;
-            display: flex;
-            align-items: center;
-            justify-content: center;
         }
 
         .flechasbanner-left {
-            left: 10px;
+            left: 50px;
         }
 
         .flechasbanner-right {
-            right: 10px;
-        }
-
-        .flechasbanner-btn:hover {
-            background-color: #f1f1f1;
+            right: 50px;
         }
     </style>
+
 
 </head>
 <body>
