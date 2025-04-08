@@ -539,6 +539,53 @@
         </div>
     </footer>
 
+    <div style="position: relative; width: 800px; margin: auto; overflow: hidden;">
+        <div id="carousel" style="display: flex; transition: transform 0.5s ease-in-out;">
+            <div style="min-width: 100%; display: flex; align-items: center; justify-content: center; position: relative;">
+                <img src="banner1.png" style="width: 100%; border-radius: 30px;">
+                <img src="persona1.png" class="persona" style="position: absolute; right: 0; bottom: 0; width: 200px; transition: transform 1s ease-in-out;">
+            </div>
+            <div style="min-width: 100%; display: flex; align-items: center; justify-content: center; position: relative;">
+                <img src="banner2.png" style="width: 100%; border-radius: 30px;">
+                <img src="persona2.png" class="persona" style="position: absolute; right: 0; bottom: 0; width: 200px; transition: transform 1s ease-in-out;">
+            </div>
+        </div>
+
+        <button onclick="prevSlide()" style="position: absolute; top: 50%; left: 10px; transform: translateY(-50%); font-size: 30px;">⬅️</button>
+        <button onclick="nextSlide()" style="position: absolute; top: 50%; right: 10px; transform: translateY(-50%); font-size: 30px;">➡️</button>
+    </div>
+
+    <script>
+        let currentIndex = 0;
+        const carousel = document.getElementById('carousel');
+        const slides = document.querySelectorAll('#carousel > div');
+
+        function updateSlide() {
+            carousel.style.transform = `translateX(-${currentIndex * 100}%)`;
+
+            // Mover personaje con efecto más lento
+            const personajes = document.querySelectorAll('.persona');
+            personajes.forEach((p, index) => {
+                if (index === currentIndex) {
+                    p.style.transform = 'translateX(0px)';
+                } else {
+                    p.style.transform = 'translateX(100px)';
+                }
+            });
+        }
+
+        function nextSlide() {
+            currentIndex = (currentIndex + 1) % slides.length;
+            updateSlide();
+        }
+
+        function prevSlide() {
+            currentIndex = (currentIndex - 1 + slides.length) % slides.length;
+            updateSlide();
+        }
+        setInterval(nextSlide, 5000);
+    </script>
+
 
     <script>
         let currentIndex = 0;
