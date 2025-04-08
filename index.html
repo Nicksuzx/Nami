@@ -521,8 +521,8 @@
                 <p>Producto 3<br>$15.000</p>
             </div>
         </div>
-        <button class="btn-nav prev" onclick="prevSlide()">❮</button>
-        <button class="btn-nav next" onclick="nextSlide()">❯</button>
+        <button class="btn-nav prev" onclick="prevProductSlide()">❮</button>
+        <button class="btn-nav next" onclick="nextProductSlide()">❯</button>
     </div>
 
     <div style="height: 40px;"></div> <!-- Espacio entre algo -->
@@ -635,73 +635,98 @@
             </div>
         </div>
 
-        <button onclick="prevSlide()" style="position: absolute; top: 50%; left: 10px; transform: translateY(-50%); font-size: 30px;">⬅️</button>
-        <button onclick="nextSlide()" style="position: absolute; top: 50%; right: 10px; transform: translateY(-50%); font-size: 30px;">➡️</button>
+        <button onclick="prevSlidePersonaje()" style="position: absolute; top: 50%; left: 10px; transform: translateY(-50%); font-size: 30px;">⬅️</button>
+        <button onclick="nextSlidePersonaje()" style="position: absolute; top: 50%; right: 10px; transform: translateY(-50%); font-size: 30px;">➡️</button>
     </div>
 
+    <!-- ...todo tu HTML hasta llegar a los scripts está igual... -->
+
     <script>
-        let currentIndex = 0;
-        const carousel = document.getElementById('carousel');
-        const slides = document.querySelectorAll('#carousel > div');
+        // Carrusel de banners (el de las personas)
+        let bannerIndex = 0;
+        const slidesBanner = document.querySelectorAll('.carouselbanner-slide');
 
-        function updateSlide() {
-            carousel.style.transform = `translateX(-${currentIndex * 100}%)`;
-
-            // Mover personaje con efecto más lento
-            const personajes = document.querySelectorAll('.persona');
-            personajes.forEach((p, index) => {
-                if (index === currentIndex) {
-                    p.style.transform = 'translateX(0px)';
-                } else {
-                    p.style.transform = 'translateX(100px)';
+        function showBannerSlide(index) {
+            slidesBanner.forEach((slide, i) => {
+                slide.classList.remove('active', 'exiting');
+                if (i === index) {
+                    slide.classList.add('active');
                 }
             });
         }
 
-        function nextSlide() {
-            currentIndex = (currentIndex + 1) % slides.length;
-            updateSlide();
+        function carouselbannerNext() {
+            slidesBanner[bannerIndex].classList.add('exiting');
+            bannerIndex = (bannerIndex + 1) % slidesBanner.length;
+            setTimeout(() => showBannerSlide(bannerIndex), 300);
         }
 
-        function prevSlide() {
-            currentIndex = (currentIndex - 1 + slides.length) % slides.length;
-            updateSlide();
+        function carouselbannerPrev() {
+            slidesBanner[bannerIndex].classList.add('exiting');
+            bannerIndex = (bannerIndex - 1 + slidesBanner.length) % slidesBanner.length;
+            setTimeout(() => showBannerSlide(bannerIndex), 300);
         }
-        setInterval(nextSlide, 5000);
+
+        showBannerSlide(bannerIndex);
     </script>
 
+    <script>
+        // Carrusel central con personaje (el que está más abajo)
+        let currentIndexBanner = 0;
+        const carousel = document.getElementById('carousel');
+        const slidesPersonaje = document.querySelectorAll('#carousel > div');
+
+        function updateSlidePersonaje() {
+            carousel.style.transform = `translateX(-${currentIndexBanner * 100}%)`;
+
+            const personajes = document.querySelectorAll('.persona');
+            personajes.forEach((p, index) => {
+                p.style.transform = index === currentIndexBanner ? 'translateX(0px)' : 'translateX(100px)';
+            });
+        }
+
+        function nextSlidePersonaje() {
+            currentIndexBanner = (currentIndexBanner + 1) % slidesPersonaje.length;
+            updateSlidePersonaje();
+        }
+
+        function prevSlidePersonaje() {
+            currentIndexBanner = (currentIndexBanner - 1 + slidesPersonaje.length) % slidesPersonaje.length;
+            updateSlidePersonaje();
+        }
+
+        setInterval(nextSlidePersonaje, 5000);
+    </script>
 
     <script>
-        let currentIndex = 0;
-        const slides = document.querySelectorAll(".slide");
+        // Carrusel de productos (mugs, etc.)
+        let currentIndexProducto = 0;
+        const slidesProducto = document.querySelectorAll(".carrusel .slide");
         const carrusel = document.getElementById("carrusel");
-        let interval;
+        let intervalProducto;
 
-        function showSlide(index) {
-            currentIndex = (index + slides.length) % slides.length;
-            carrusel.style.transform = `translateX(-${currentIndex * 100}%)`;
+        function showProductSlide(index) {
+            currentIndexProducto = (index + slidesProducto.length) % slidesProducto.length;
+            carrusel.style.transform = `translateX(-${currentIndexProducto * 100}%)`;
         }
 
-        function nextSlide() {
-            showSlide(currentIndex + 1);
+        function nextProductSlide() {
+            showProductSlide(currentIndexProducto + 1);
         }
 
-        function prevSlide() {
-            showSlide(currentIndex - 1);
+        function prevProductSlide() {
+            showProductSlide(currentIndexProducto - 1);
         }
 
         function startAutoSlide() {
-            interval = setInterval(nextSlide, 5000);
+            intervalProducto = setInterval(nextProductSlide, 5000);
         }
 
         function stopAutoSlide() {
-            clearInterval(interval);
+            clearInterval(intervalProducto);
         }
 
-        // Iniciar automático
         startAutoSlide();
-
-        // Pausar cuando el mouse está encima
         carrusel.addEventListener("mouseenter", stopAutoSlide);
         carrusel.addEventListener("mouseleave", startAutoSlide);
     </script>
@@ -716,35 +741,6 @@
             }
         });
     </script>
-
-    <script>
-        let bannerIndex = 0;
-        const slides = document.querySelectorAll('.carouselbanner-slide');
-
-        function showBannerSlide(index) {
-            slides.forEach((slide, i) => {
-                slide.classList.remove('active', 'exiting');
-                if (i === index) {
-                    slide.classList.add('active');
-                }
-            });
-        }
-
-        function carouselbannerNext() {
-            slides[bannerIndex].classList.add('exiting');
-            bannerIndex = (bannerIndex + 1) % slides.length;
-            setTimeout(() => showBannerSlide(bannerIndex), 300);
-        }
-
-        function carouselbannerPrev() {
-            slides[bannerIndex].classList.add('exiting');
-            bannerIndex = (bannerIndex - 1 + slides.length) % slides.length;
-            setTimeout(() => showBannerSlide(bannerIndex), 300);
-        }
-
-        showBannerSlide(bannerIndex);
-    </script>
-
 
 </body>
 </html>
