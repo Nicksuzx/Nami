@@ -244,19 +244,19 @@
 
         .boton-container {
             text-align: center;
-            margin-top: 40px;
+            margin-top: 80px;
         }
 
         .boton-personaliza {
             background: linear-gradient(135deg, #f06292, #ba68c8);
             border: none;
             color: white;
-            padding: 15px 30px;
-            font-size: 18px;
+            padding: 30px 60px;
+            font-size: 36px;
             font-weight: bold;
-            border-radius: 30px;
+            border-radius: 60px;
             cursor: pointer;
-            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
             transition: transform 0.2s ease, box-shadow 0.2s ease;
         }
 
@@ -264,6 +264,71 @@
                 transform: scale(1.05);
                 box-shadow: 0 6px 14px rgba(0, 0, 0, 0.3);
             }
+
+        .footer-info {
+            background-color: #f8f0f8;
+            color: #444;
+            padding: 40px 20px 20px;
+            font-family: sans-serif;
+            border-top: 2px solid #ffb3e6;
+        }
+
+        .footer-top {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-around;
+            text-align: center;
+            gap: 30px;
+            margin-bottom: 30px;
+        }
+
+        .footer-item img {
+            width: 50px;
+            height: 50px;
+            margin-bottom: 10px;
+        }
+
+        .footer-item h4 {
+            font-size: 18px;
+            color: #d14fa1;
+            margin-bottom: 5px;
+        }
+
+        .footer-item p {
+            font-size: 14px;
+            max-width: 250px;
+            margin: auto;
+        }
+
+        .footer-bottom {
+            border-top: 1px solid #e0cce0;
+            padding-top: 20px;
+            text-align: center;
+        }
+
+        .footer-links {
+            margin-bottom: 10px;
+        }
+
+            .footer-links a {
+                margin: 0 10px;
+                font-size: 14px;
+                color: #a161a9;
+                text-decoration: none;
+            }
+
+                .footer-links a:hover {
+                    text-decoration: underline;
+                    color: #d14fa1;
+                }
+
+        @media (max-width: 768px) {
+            .footer-top {
+                flex-direction: column;
+                align-items: center;
+            }
+        }
+
 
         @media (max-width: 768px) {
             .carrusel-container {
@@ -322,8 +387,6 @@
                 background-position: 500%;
             }
         }
-
-
 
     </style>
 </head>
@@ -405,6 +468,40 @@
     <div class="boton-container">
         <button class="boton-personaliza">PERSONALIZA EL TUYO AHORA</button>
     </div>
+
+    <footer class="footer-info">
+        <div class="footer-top">
+            <div class="footer-item">
+                <img src="https://cdn-icons-png.flaticon.com/512/633/633611.png" alt="Pago seguro" />
+                <h4>Paga como quieras</h4>
+                <p>Tarjeta de crédito, débito, transferencia o en efectivo. ¡Fácil y seguro!</p>
+            </div>
+            <div class="footer-item">
+                <img src="https://cdn-icons-png.flaticon.com/512/104/104678.png" alt="Envío gratis" />
+                <h4>Envíos desde $60.000</h4>
+                <p>Recibe tus productos sin costo adicional en pedidos seleccionados.</p>
+            </div>
+            <div class="footer-item">
+                <img src="https://cdn-icons-png.flaticon.com/512/942/942748.png" alt="Protección" />
+                <h4>Protección total</h4>
+                <p>Tu compra está protegida de principio a fin. Devoluciones sin complicaciones.</p>
+            </div>
+        </div>
+
+        <div class="footer-bottom">
+            <div class="footer-links">
+                <a href="#">Sobre nosotros</a>
+                <a href="#">Términos y condiciones</a>
+                <a href="#">Privacidad</a>
+                <a href="#">Ayuda</a>
+                <a href="#">Contacto</a>
+            </div>
+            <p class="copyright">
+                © 2025 NAMI S.A.S - Todos los derechos reservados. Calle Imaginaria 123 - Ciudad Creativa.
+            </p>
+        </div>
+    </footer>
+
 
     <script>
         let currentIndex = 0;
