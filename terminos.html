@@ -3,32 +3,53 @@
 <head>
     <meta charset="UTF-8">
     <title>Términos y Condiciones</title>
-    <link rel="stylesheet" href="estilos.css"> <!-- Asegúrate de que este archivo contenga tu paleta -->
+    <link rel="stylesheet" href="estilos.css"> <!-- Tu archivo de estilos general -->
     <style>
         body {
             font-family: 'Segoe UI', sans-serif;
             margin: 0;
-            background-color: #fdfdfd;
+            padding: 0;
+            background: url('Images/fondoindex.png') no-repeat center center fixed;
+            background-size: cover;
             color: #333;
         }
 
-        .header {
-            background-color: #ffd700;
-            padding: 20px;
+        .logo-container {
             text-align: center;
+            margin-top: 40px;
         }
 
-            .header img {
-                height: 80px;
+            .logo-container img {
+                height: 240px; /* Aumentado 3 veces si antes era 80px */
+            }
+
+        .cerrar-btn {
+            display: block;
+            width: fit-content;
+            margin: 30px auto 20px;
+            padding: 12px 26px;
+            background-color: #ff9900; /* igual al botón de personalizar */
+            color: white;
+            border: none;
+            border-radius: 30px;
+            font-size: 16px;
+            font-weight: bold;
+            cursor: pointer;
+            text-decoration: none;
+            transition: background 0.3s ease;
+        }
+
+            .cerrar-btn:hover {
+                background-color: #cc7a00;
             }
 
         .contenedor {
             max-width: 900px;
-            margin: 40px auto;
-            padding: 20px;
-            background-color: #ffffff;
-            border-radius: 12px;
-            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+            margin: 20px auto;
+            padding: 30px;
+            background-color: rgba(255,255,255,0.95);
+            border-radius: 15px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.2);
         }
 
         h1 {
@@ -44,30 +65,12 @@
         p {
             line-height: 1.6;
         }
-
-        .cerrar-btn {
-            display: block;
-            margin: 30px auto 10px;
-            padding: 12px 24px;
-            background-color: #d87b00;
-            color: white;
-            border: none;
-            border-radius: 8px;
-            font-size: 16px;
-            cursor: pointer;
-            text-decoration: none;
-            text-align: center;
-        }
-
-            .cerrar-btn:hover {
-                background-color: #a85f00;
-            }
     </style>
 </head>
 <body>
 
-    <div class="header">
-        <img src="Images/logo.png" alt="Logo">
+    <div class="logo-container">
+        <img src="Images/logo2.png" alt="Logo">
     </div>
 
     <a href="index.html" class="cerrar-btn">✖ Cerrar</a>
@@ -82,25 +85,25 @@
         <p>El tiempo estimado para la elaboración y entrega del pedido será informado al cliente al momento de la compra. Este puede variar según la cantidad solicitada, el nivel de personalización requerido y la ubicación del destinatario.</p>
 
         <h2>3. Cambios, devoluciones y reclamaciones</h2>
-        <p>Dado que se trata de productos personalizados, no se aceptan devoluciones ni cambios, salvo en casos de daño físico durante el envío o errores atribuibles directamente a nuestra empresa...</p>
+        <p>Dado que se trata de productos personalizados, no se aceptan devoluciones ni cambios, salvo en casos de daño físico durante el envío o errores atribuibles directamente a nuestra empresa. Las reclamaciones deben realizarse dentro de las 48 horas posteriores a la recepción del pedido, acompañadas de evidencia fotográfica.</p>
 
         <h2>4. Condiciones de pago</h2>
-        <p>Todos los pedidos deben ser pagados por anticipado...</p>
+        <p>Todos los pedidos deben ser pagados por anticipado. La producción comenzará únicamente una vez se haya confirmado el pago en su totalidad.</p>
 
         <h2>5. Envíos y logística</h2>
-        <p>El costo del envío será asumido por el cliente...</p>
+        <p>El costo del envío será asumido por el cliente, salvo que se indique lo contrario mediante una promoción vigente. No nos hacemos responsables por retrasos o inconvenientes ocasionados por terceros encargados del transporte.</p>
 
         <h2>6. Uso de diseños enviados por el cliente</h2>
-        <p>Nos comprometemos a utilizar los diseños proporcionados exclusivamente para la elaboración del pedido correspondiente...</p>
+        <p>Nos comprometemos a utilizar los diseños proporcionados exclusivamente para la elaboración del pedido correspondiente. No serán utilizados con otros fines sin la autorización expresa del cliente.</p>
 
         <h2>7. Promociones y precios especiales por volumen</h2>
-        <p>Ofrecemos precios especiales a partir de cierto número de unidades...</p>
+        <p>Ofrecemos precios especiales a partir de cierto número de unidades, los cuales serán informados previamente. Las promociones están sujetas a cambios sin previo aviso.</p>
 
         <h2>8. Contenido no permitido</h2>
-        <p>No se aceptará ningún tipo de contenido explícito, ofensivo o relacionado con material +18...</p>
+        <p>No se aceptará ningún tipo de contenido explícito, ofensivo o relacionado con material +18. En caso de recibir un diseño que incumpla esta norma, el pedido será rechazado y no se procederá con la producción.</p>
 
         <h2>9. Cuestionario de pedido</h2>
-        <p>Es obligatorio completar correctamente el cuestionario o formulario de pedido...</p>
+        <p>Es obligatorio completar correctamente el cuestionario o formulario de pedido. Si este no se diligencia adecuadamente, el producto no será procesado ni elaborado.</p>
     </div>
 
     <a href="index.html" class="cerrar-btn">✖ Cerrar</a>
