@@ -2,60 +2,108 @@
 <html lang="es">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Términos y Condiciones</title>
+    <link rel="stylesheet" href="estilos.css"> <!-- Asegúrate de que este archivo contenga tu paleta -->
     <style>
         body {
-            font-family: Arial, sans-serif;
-            padding: 40px;
-            max-width: 800px;
-            margin: auto;
-            line-height: 1.6;
-            background-color: #f8f8f8;
+            font-family: 'Segoe UI', sans-serif;
+            margin: 0;
+            background-color: #fdfdfd;
             color: #333;
+        }
+
+        .header {
+            background-color: #ffd700;
+            padding: 20px;
+            text-align: center;
+        }
+
+            .header img {
+                height: 80px;
+            }
+
+        .contenedor {
+            max-width: 900px;
+            margin: 40px auto;
+            padding: 20px;
+            background-color: #ffffff;
+            border-radius: 12px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
         }
 
         h1 {
             text-align: center;
-            margin-bottom: 30px;
+            color: #d87b00;
         }
 
         h2 {
             margin-top: 30px;
-            color: #222;
+            color: #444;
         }
+
+        p {
+            line-height: 1.6;
+        }
+
+        .cerrar-btn {
+            display: block;
+            margin: 30px auto 10px;
+            padding: 12px 24px;
+            background-color: #d87b00;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-size: 16px;
+            cursor: pointer;
+            text-decoration: none;
+            text-align: center;
+        }
+
+            .cerrar-btn:hover {
+                background-color: #a85f00;
+            }
     </style>
 </head>
 <body>
-    <h1>Términos y Condiciones</h1>
 
-    <p>Al efectuar una compra con nosotros, el cliente acepta los presentes términos y condiciones:</p>
+    <div class="header">
+        <img src="Images/logo.png" alt="Logo">
+    </div>
 
-    <h2>1. Personalización de productos</h2>
-    <p>El cliente es responsable de proporcionar correctamente el diseño, imagen o texto que desea incorporar en el producto. Una vez iniciado el proceso de producción, no se admitirán cambios ni modificaciones.</p>
+    <a href="index.html" class="cerrar-btn">✖ Cerrar</a>
 
-    <h2>2. Tiempos de producción y entrega</h2>
-    <p>El tiempo estimado para la elaboración y entrega del pedido será informado al cliente al momento de la compra. Este puede variar según la cantidad solicitada, el nivel de personalización requerido y la ubicación del destinatario.</p>
+    <div class="contenedor">
+        <h1>Términos y Condiciones</h1>
 
-    <h2>3. Cambios, devoluciones y reclamaciones</h2>
-    <p>Dado que se trata de productos personalizados, no se aceptan devoluciones ni cambios, salvo en casos de daño físico durante el envío o errores atribuibles directamente a nuestra empresa. Las reclamaciones deben realizarse dentro de las 48 horas posteriores a la recepción del pedido, acompañadas de evidencia fotográfica.</p>
+        <h2>1. Personalización de productos</h2>
+        <p>El cliente es responsable de proporcionar correctamente el diseño, imagen o texto que desea incorporar en el producto. Una vez iniciado el proceso de producción, no se admitirán cambios ni modificaciones.</p>
 
-    <h2>4. Condiciones de pago</h2>
-    <p>Todos los pedidos deben ser pagados por anticipado. La producción comenzará únicamente una vez se haya confirmado el pago en su totalidad.</p>
+        <h2>2. Tiempos de producción y entrega</h2>
+        <p>El tiempo estimado para la elaboración y entrega del pedido será informado al cliente al momento de la compra. Este puede variar según la cantidad solicitada, el nivel de personalización requerido y la ubicación del destinatario.</p>
 
-    <h2>5. Envíos y logística</h2>
-    <p>El costo del envío será asumido por el cliente, salvo que se indique lo contrario mediante una promoción vigente. No nos hacemos responsables por retrasos o inconvenientes ocasionados por terceros encargados del transporte.</p>
+        <h2>3. Cambios, devoluciones y reclamaciones</h2>
+        <p>Dado que se trata de productos personalizados, no se aceptan devoluciones ni cambios, salvo en casos de daño físico durante el envío o errores atribuibles directamente a nuestra empresa...</p>
 
-    <h2>6. Uso de diseños enviados por el cliente</h2>
-    <p>Nos comprometemos a utilizar los diseños proporcionados exclusivamente para la elaboración del pedido correspondiente. No serán utilizados con otros fines sin la autorización expresa del cliente.</p>
+        <h2>4. Condiciones de pago</h2>
+        <p>Todos los pedidos deben ser pagados por anticipado...</p>
 
-    <h2>7. Promociones y precios especiales por volumen</h2>
-    <p>Ofrecemos precios especiales a partir de cierto número de unidades, los cuales serán informados previamente. Las promociones están sujetas a cambios sin previo aviso.</p>
+        <h2>5. Envíos y logística</h2>
+        <p>El costo del envío será asumido por el cliente...</p>
 
-    <h2>8. Contenido no permitido</h2>
-    <p>No se aceptará ningún tipo de contenido explícito, ofensivo o relacionado con material +18. En caso de recibir un diseño que incumpla esta norma, el pedido será rechazado y no se procederá con la producción.</p>
+        <h2>6. Uso de diseños enviados por el cliente</h2>
+        <p>Nos comprometemos a utilizar los diseños proporcionados exclusivamente para la elaboración del pedido correspondiente...</p>
 
-    <h2>9. Cuestionario de pedido</h2>
-    <p>Es obligatorio completar correctamente el cuestionario o formulario de pedido. Si este no se diligencia adecuadamente, el producto no será procesado ni elaborado.</p>
+        <h2>7. Promociones y precios especiales por volumen</h2>
+        <p>Ofrecemos precios especiales a partir de cierto número de unidades...</p>
+
+        <h2>8. Contenido no permitido</h2>
+        <p>No se aceptará ningún tipo de contenido explícito, ofensivo o relacionado con material +18...</p>
+
+        <h2>9. Cuestionario de pedido</h2>
+        <p>Es obligatorio completar correctamente el cuestionario o formulario de pedido...</p>
+    </div>
+
+    <a href="index.html" class="cerrar-btn">✖ Cerrar</a>
+
 </body>
 </html>
