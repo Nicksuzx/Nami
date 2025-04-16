@@ -303,7 +303,6 @@
                     text-decoration: underline;
                     color: #d14fa1;
                 }
-
     </style>
     <style>
         .carouselbanner-container {
@@ -374,9 +373,82 @@
                 box-shadow: 0 0 8px #ff69b4;
                 transform: scale(1.03);
             }
+    </style>
+    <style>
+        /* Comentario: Celular*/
+        @media (max-width: 768px) {
+            header {
+                flex-direction: column;
+                height: auto;
+                padding: 20px;
+                gap: 15px;
+            }
+
+            .logo-img {
+                height: 120px;
+                width: 120px;
+            }
+
+            .buscador input[type="text"] {
+                width: 100%;
+                max-width: 250px;
+            }
+
+            .menu {
+                flex-direction: column;
+                gap: 10px;
+                padding: 15px;
+            }
+
+            .carouselbanner-container {
+                height: auto;
+                max-height: 400px;
+            }
+
+            .banner-img {
+                object-fit: cover;
+            }
+
+            .productos {
+                flex-direction: column;
+                align-items: center;
+                gap: 20px;
+            }
+
+            .producto {
+                width: 90%;
+                max-width: 300px;
+            }
+
+            .btn-nav {
+                width: 35px;
+                height: 35px;
+                font-size: 18px;
+            }
+
+            .flechasbanner-btn {
+                font-size: 24px;
+                padding: 8px;
+            }
+
+            footer .footer-top {
+                flex-direction: column;
+                align-items: center;
+                gap: 30px;
+            }
+
+            .footer-links {
+                display: flex;
+                flex-direction: column;
+                gap: 8px;
+            }
+
+                .footer-links a {
+                    font-size: 16px;
+                }
+        }
 
     </style>
-
 </head>
 <body>
 
