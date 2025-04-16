@@ -1,768 +1,208 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-    <meta charset="UTF-8">
-    <title>NAMI - mugs</title>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Pocillos Personalizados</title>
     <style>
-
-        /* Fondo animado */
-        #fondo-animado {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100vh;
-            z-index: -1;
-            background-color: white;
-            transition: background-color 0.5s ease;
-            overflow: hidden;
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
         }
-
-            /* Contenedor de los textos NAMI repetidos */
-            #fondo-animado .nami-patron {
-                display: grid;
-                grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
-                grid-auto-rows: 150px;
-                width: 100%;
-                height: 100%;
-                opacity: 0.1;
-                animation: moverFondo 20s linear infinite;
-            }
-
-        .nami-patron span {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            font-size: 60px;
-            font-weight: bold;
-            color: #000000;
-            font-family: Arial, sans-serif;
-            user-select: none;
-            transform: rotate(-15deg);
-        }
-
-        /* Movimiento animado del fondo */
-        @keyframes moverFondo {
-            0% {
-                transform: translateY(0);
-            }
-
-            100% {
-                transform: translateY(-100px);
-            }
-        }
-
-        /* Cuando se hace scroll */
-        body.scroll-activo #fondo-animado {
-            background-color: #ffd9ec; /* Rosa pastel suave */
-        }
-
-        body.scroll-activo .nami-patron span {
-            color: #ff70c6; /* Rosado más fuerte pero suave */
-        }
-
 
         body {
-            margin: 0;
-            font-family: Arial, sans-serif;
-            background: #f5f5f5;
+            font-family: 'Segoe UI', sans-serif;
+            background: #fffdfa;
+            color: #333;
+            line-height: 1.6;
         }
-
-        /* Comentario: header */
 
         header {
-            position: sticky;
-            top: 0;
-            z-index: 1000;
-            background-color: #ff69b4;
-            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+            background-color: #ffd700;
             display: flex;
-            align-items: center;
             justify-content: space-between;
-            padding: 20px 40px;
-            height: 180px;
-        }
-
-        .logo-img {
-            height: 200px;
-            width: 200px;
-            border-radius: 30%;
-            object-fit: cover;
-        }
-
-        @media screen and (max-width: 768px) {
-            header {
-                flex-direction: column;
-                height: auto;
-                padding: 10px 20px;
-            }
-
-            .logo-img {
-                height: 80px;
-                margin-bottom: 10px;
-            }            
-        }
-
-        /* Comentario: header end*/
-
-        .menu {
-            margin-top: 10px;
-            background: #ffb6c1;
-            padding: 10px;
-            display: flex;
-            gap: 20px;
-            justify-content: center;
-        }
-
-            .menu a {
-                text-decoration: none;
-                color: #333;
-                font-weight: bold;
-            }
-
-        .banner {
-            background: linear-gradient(to right, #ff69b4, #ffb6c1);
-            padding: 40px;
-            color: white;
-            text-align: center;
-        }
-
-            .banner h1 {
-                font-size: 36px;
-                margin-bottom: 10px;
-            }
-
-        .carrusel-container {
-            position: relative;
-            width: 600px;
-            height: 600px;
-            overflow: hidden;
-            margin: 0 auto;
-        }
-
-        .carrusel {
-            display: flex;
-            transition: transform 0.6s ease-in-out;
-            width: 100%;
-            height: 100%;
-        }
-
-        .slide {
-            min-width: 100%;
-            height: 100%;
-            display: flex;
-            flex-direction: column;
-            justify-content: flex-start;
             align-items: center;
-            padding-top: 20px;
-            box-sizing: border-box;
+            padding: 1rem 2rem;
+            flex-wrap: wrap;
         }
 
+        .logo {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: #5d4a00;
+        }
 
-            .slide img {
-                width: 500px;
-                height: 500px;
-                object-fit: contain;
-                border-radius: 10px;
-                transition: transform 0.3s;
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: 1rem;
+            flex-wrap: wrap;
+        }
+
+        nav a {
+            text-decoration: none;
+            color: #333;
+            font-weight: 500;
+        }
+
+            nav a:hover {
+                color: #5d4a00;
             }
 
-            .slide p {
-                text-align: center;
-                font-weight: bold;
-                margin-top: 10px;
-                font-size: 18px;
+        .slider-container {
+            position: relative;
+            max-width: 100%;
+            overflow: hidden;
+            margin: 1rem auto;
+        }
+
+        .slider {
+            display: flex;
+            transition: transform 0.5s ease-in-out;
+        }
+
+            .slider img {
+                width: 100%;
+                flex-shrink: 0;
+                height: auto;
+                object-fit: cover;
             }
 
-        /* Botones */
-        .btn-nav {
+        button.prev,
+        button.next {
             position: absolute;
             top: 50%;
             transform: translateY(-50%);
-            background: white;
-            border: 1px solid #ccc;
-            border-radius: 50%;
-            width: 45px;
-            height: 45px;
-            font-size: 22px;
-            color: #333;
+            background: rgba(255, 255, 255, 0.7);
+            border: none;
+            font-size: 2rem;
             cursor: pointer;
-            box-shadow: 0 0 8px rgba(0,0,0,0.15);
-            transition: all 0.3s ease;
-            display: flex;
-            align-items: center;
-            justify-content: center;
+            padding: 0.5rem;
+            color: #333;
         }
 
-            .btn-nav:hover {
-                box-shadow: 0 0 12px rgba(0,0,0,0.25);
-                transform: translateY(-50%) scale(1.05);
-            }
-
-        .prev {
+        button.prev {
             left: 10px;
         }
 
-        .next {
+        button.next {
             right: 10px;
         }
 
-        .productos {
-            display: flex;
-            gap: 20px;
-            padding: 20px;
-            justify-content: center;
-            flex-wrap: wrap;
-        }
-
-        .producto {
-            background: white;
-            border-radius: 10px;
-            padding: 10px;
-            width: 200px;
-            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-        }
-
-            .producto img {
-                width: 100%;
-                height: 200px;
-                object-fit: contain;
-                border-radius: 5px;
-            }
-
-            .producto h4 {
-                margin: 10px 0 5px;
-            }
-
-            .producto p {
-                margin: 0;
-                color: green;
-            }
-
-        .banner h1 {
-            animation: fadeInBanner 1.2s ease forwards, shineText 5s linear infinite;
-            background: linear-gradient(90deg, white, #fff0f5, white);
-            background-size: 200% auto;
-            color: transparent;
-            background-clip: text;
-            -webkit-background-clip: text;
-        }
-
-        .boton-container {
-            text-align: center;
-            margin-top: 80px;
-        }
-
-        .boton-personaliza {
-            background: linear-gradient(135deg, #f06292, #ba68c8);
-            border: none;
-            color: white;
-            padding: 30px 60px;
-            font-size: 36px;
-            font-weight: bold;
-            border-radius: 60px;
-            cursor: pointer;
-            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
-            transition: transform 0.2s ease, box-shadow 0.2s ease;
-        }
-
-            .boton-personaliza:hover {
-                transform: scale(1.05);
-                box-shadow: 0 6px 14px rgba(0, 0, 0, 0.3);
-            }
-
-        .footer-info {
-            background-color: #f8f0f8;
-            color: #444;
-            padding: 40px 20px 20px;
-            font-family: sans-serif;
-            border-top: 2px solid #ffb3e6;
-        }
-
-        .footer-top {
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: space-around;
-            text-align: center;
-            gap: 30px;
-            margin-bottom: 30px;
-        }
-
-        .footer-item img {
-            width: 50px;
-            height: 50px;
-            margin-bottom: 10px;
-        }
-
-        .footer-item h4 {
-            font-size: 18px;
-            color: #d14fa1;
-            margin-bottom: 5px;
-        }
-
-        .footer-item p {
-            font-size: 14px;
-            max-width: 250px;
-            margin: auto;
-        }
-
-        .footer-bottom {
-            border-top: 1px solid #e0cce0;
-            padding-top: 20px;
+        .contenido {
+            padding: 2rem;
             text-align: center;
         }
 
-        .footer-links {
-            margin-bottom: 10px;
-        }
-
-            .footer-links a {
-                margin: 0 10px;
-                font-size: 14px;
-                color: #a161a9;
-                text-decoration: none;
+            .contenido h2 {
+                font-size: 2rem;
+                margin-bottom: 1rem;
+                color: #5d4a00;
             }
 
-                .footer-links a:hover {
-                    text-decoration: underline;
-                    color: #d14fa1;
-                }
+        footer {
+            background-color: #f8e8a0;
+            padding: 1rem;
+            text-align: center;
+            font-size: 0.9rem;
+        }
 
         @media (max-width: 768px) {
-            .footer-top {
-                flex-direction: column;
-                align-items: center;
-            }
-        }
-
-
-        @media (max-width: 768px) {
-            .carrusel-container {
-                width: 100%;
-                height: auto;
-            }
-
-            .slide img {
-                width: 90%;
-                height: auto;
-            }
-
-            .btn-nav {
-                width: 35px;
-                height: 35px;
-                font-size: 18px;
-            }
-
-            .productos {
-                flex-direction: column;
-                align-items: center;
-            }
-
-            .producto {
-                width: 90%;
-            }
-
-            .search-bar input {
-                width: 150px;
-            }
-
             header {
                 flex-direction: column;
-                gap: 10px;
-            }
-        }
-
-        @keyframes fadeInBanner {
-            from {
-                opacity: 0;
-                transform: translateY(-20px);
+                align-items: flex-start;
             }
 
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        @keyframes shineText {
-            0% {
-                background-position: -500%;
+            nav ul {
+                flex-direction: column;
+                gap: 0.5rem;
+                width: 100%;
             }
 
-            100% {
-                background-position: 500%;
+            .contenido h2 {
+                font-size: 1.5rem;
+            }
+
+            button.prev,
+            button.next {
+                font-size: 1.5rem;
+                padding: 0.3rem;
             }
         }
     </style>
-    <style>
-        .carouselbanner-container {
-            width: 100%;
-            max-width: 1260px;
-            height: 630px;
-            overflow: hidden;
-            position: relative;
-            margin: auto;
-        }
-
-        .carouselbanner-slide {
-            position: absolute;
-            width: 100%;
-            height: 100%;
-            opacity: 0;
-            transition: opacity 2s ease-in-out;
-        }
-
-            .carouselbanner-slide.active {
-                opacity: 1;
-                z-index: 1;
-            }
-
-        .banner-img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-        }
-
-        .flechasbanner-btn {
-            position: absolute;
-            top: 50%;
-            transform: translateY(-50%);
-            background: rgba(255,255,255,0.6);
-            border: none;
-            font-size: 30px;
-            cursor: pointer;
-            padding: 10px;
-            z-index: 2;
-        }
-
-        .flechasbanner-left {
-            left: 50px;
-        }
-
-        .flechasbanner-right {
-            right: 50px;
-        }
-    </style>
-    <style>
-        .buscador input[type="text"] {
-            padding: 10px 20px;
-            border-radius: 25px;
-            border: none;
-            outline: none;
-            width: 300px;
-            font-size: 14px;
-            box-shadow: 0 2px 5px rgba(0,0,0,0.2);
-            transition: all 0.3s ease-in-out;
-        }
-
-            .buscador input[type="text"]::placeholder {
-                color: #999;
-            }
-
-            .buscador input[type="text"]:focus {
-                box-shadow: 0 0 8px #ff69b4;
-                transform: scale(1.03);
-            }
-
-    </style>
-
 </head>
 <body>
-
     <header>
-        <img src="Images/logo.png" alt="NAMI" class="logo-img">
-        <div class="buscador">
-            <input type="text" placeholder="Buscar productos, marcas...">
-        </div>
-        <div>👤 NAMI</div>
+        <div class="logo">✨ TU DISEÑO ✨</div>
+        <nav>
+            <ul>
+                <li><a href="#">Inicio</a></li>
+                <li><a href="#">Productos</a></li>
+                <li><a href="#">Contacto</a></li>
+                <li><a href="terminos.html">Términos</a></li>
+            </ul>
+        </nav>
     </header>
 
-    <div id="fondo-animado">
-        <div class="nami-patron">
-            <div style="height: 60px;"></div> <!-- Espacio entre algo -->
-            <span>NAMI</span><span>NAMI</span><span>NAMI</span><span>NAMI</span><span>NAMI</span>
-            <div style="height: 40px;"></div> <!-- Espacio entre algo -->
-            <span>NAMI</span><span>NAMI</span><span>NAMI</span><span>NAMI</span><span>NAMI</span>
-            <div style="height: 40px;"></div> <!-- Espacio entre algo -->
-            <span>NAMI</span><span>NAMI</span><span>NAMI</span><span>NAMI</span><span>NAMI</span>
-            <div style="height: 40px;"></div> <!-- Espacio entre algo -->
-            <span>NAMI</span><span>NAMI</span><span>NAMI</span><span>NAMI</span><span>NAMI</span>
+    <section class="slider-container">
+        <div class="slider" id="slider">
+            <img src="img1.jpg" alt="Pocillo 1" />
+            <img src="img2.jpg" alt="Pocillo 2" />
+            <img src="img3.jpg" alt="Pocillo 3" />
         </div>
-    </div>
+        <button class="prev" onclick="changeSlide(-1)">❮</button>
+        <button class="next" onclick="changeSlide(1)">❯</button>
+    </section>
 
-    <div class="menu">
-        <a href="#">Categorías</a>
-        <a href="#">Ofertas</a>
-        <a href="#">Cupones</a>
-        <a href="#">Moda</a>
-        <a href="#">Ayuda</a>
-    </div>
+    <section class="contenido">
+        <h2>Diseños únicos para personas únicas</h2>
+        <p>Descubre nuestros pocillos personalizados que se adaptan a tu estilo y emociones. Hechos con amor, diseñados para ti.</p>
+    </section>
 
-    <div style="height: 40px;"></div> <!-- Espacio entre algo -->
-
-    <div class="carouselbanner-container">
-        <div class="carouselbanner-slide active">
-            <img src="Images/banner1.png" class="banner-img">
-        </div>
-        <div class="carouselbanner-slide">
-            <img src="Images/banner2.png" class="banner-img">
-        </div>
-        <div class="carouselbanner-slide">
-            <img src="Images/banner3.png" class="banner-img">
-        </div>
-        <div class="carouselbanner-slide">
-            <img src="Images/banner4.png" class="banner-img">
-        </div>
-
-        <!-- Flechas -->
-        <button class="flechasbanner-btn flechasbanner-left" onclick="carouselbannerPrev()">❮</button>
-        <button class="flechasbanner-btn flechasbanner-right" onclick="carouselbannerNext()">❯</button>
-    </div>
-
-    <div style="height: 80px;"></div> <!-- Espacio entre algo -->
-
-    <div class="carrusel-container">
-        <div class="carrusel" id="carrusel">
-            <div class="slide">
-                <img src="Products/producto1.png" alt="Mug térmico con diseño de anime - NAMI">
-                <p>Producto 1<br>$15.000</p>
-            </div>
-            <div class="slide">
-                <img src="Products/producto2.png" alt="Mug térmico con diseño de para un dia especial - NAMI">
-                <p>Producto 2<br>$15.000</p>
-            </div>
-            <div class="slide">
-                <img src="Products/producto3.png" alt="Producto 3 etc mucho texto">
-                <p>Producto 3<br>$15.000</p>
-            </div>
-        </div>
-        <button class="btn-nav prev" onclick="prevProductSlide()">❮</button>
-        <button class="btn-nav next" onclick="nextProductSlide()">❯</button>
-    </div>
-
-    <div style="height: 40px;"></div> <!-- Espacio entre algo -->
-    <!-- Botón con enlace a Google Forms -->
-    <div style="display: flex; justify-content: center; margin-bottom: 50px;">
-        <a href="https://docs.google.com/forms/d/e/1FAIpQLSdDoWLjfV4q1l2yuTth3wTRTGsJRNISUOgCG0IjHk7CMxzgIA/viewform?usp=preview" target="_blank" style="text-decoration: none;">
-            <button style="
-      background: linear-gradient(to right, #d946ef, #ec4899);
-      color: white;
-      border: none;
-      border-radius: 20px;
-      padding: 20px 40px;
-      font-size: 20px;
-      font-weight: bold;
-      cursor: pointer;
-      box-shadow: 0 4px 10px rgba(0,0,0,0.2);
-      transition: transform 0.2s;
-    " onmouseover="this.style.transform='scale(1.05)'" onmouseout="this.style.transform='scale(1)'">
-                PERSONALIZA EL TUYO AHORA
-            </button>
-        </a>
-    </div>
-
-
-    <div style="height: 40px;"></div> <!-- Espacio entre algo -->
-
-    <div class="productos">
-        <div class="producto">
-            <img src="Products/producto1.png" alt="Tazas de cerámica con frase divertida">
-            <h4>Perzonalizados</h4>
-            <p>$15.000</p>
-        </div>
-        <div class="producto">
-            <img src="Products/producto2.png" alt="Taza de cerámica con frase de mamá">
-            <h4>Regalo para mamá</h4>
-            <p>$15.000</p>
-        </div>
-        <div class="producto">
-            <img src="Products/producto3.png" alt="Mug estilo festividad">
-            <h4>Pocillo de grado</h4>
-            <p>$15.000</p>
-        </div>
-        <div class="producto">
-            <img src="Products/producto4.png" alt="Taza para empresas - blanca">
-            <h4>Empresa</h4>
-            <p>$15.000</p>
-        </div>
-    </div>
-
-    <!-- Espaciador decorativo -->
-    <div style="
-        height: 60px;
-        background: linear-gradient(to right, #f8d8f8, #fce4ec, #f8d8f8);
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        font-family: 'Poppins', sans-serif;
-        color: #c97ab4;
-        font-size: 18px;
-        font-weight: 500;
-        letter-spacing: 1px;
-        ">
-        ✨ Hecho con amor por NAMI ✨
-    </div>
-
-    <div style="height: 40px;"></div> <!-- Espacio entre algo -->
-
-    <footer class="footer-info">
-        <div class="footer-top">
-            <div class="footer-item">
-                <img src="https://cdn-icons-png.flaticon.com/512/633/633611.png" alt="Pago seguro" />
-                <h4>Paga como quieras</h4>
-                <p>Nequi, Daviplata, transferencia o en efectivo. ¡Fácil y seguro!</p>
-            </div>
-            <div class="footer-item">
-                <img src="https://cdn-icons-png.flaticon.com/512/104/104678.png" alt="Envío gratis" />
-                <h4>Envíos desde 5 unds</h4>
-                <p>Recibe tus productos sin costo adicional en pedidos seleccionados.</p>
-            </div>
-            <div class="footer-item">
-                <img src="https://cdn-icons-png.flaticon.com/512/942/942748.png" alt="Protección" />
-                <h4>Protección total</h4>
-                <p>Tu compra está protegida de principio a fin. Devoluciones sin complicaciones (Revisar  <a href="terminos.html" target="_blank">Términos y condiciones</a>).</p>
-            </div>
-        </div>
-
-        <div class="footer-bottom">
-            <div class="footer-links">
-                <a href="#">Sobre nosotros</a>
-                <a href="terminos.html" target="_blank">Términos y condiciones</a>
-                <a href="#">Privacidad</a>
-                <a href="#">Ayuda</a>
-                <a href="#">Contacto</a>
-            </div>
-            <p class="copyright">
-                © 2025 NAMI S.A.S - Todos los derechos reservados. Calle 69 a # 105 h 42 - Ciudad Bogotá DC.
-            </p>
-        </div>
+    <footer>
+        <p>&copy; 2025 Pocillos Personalizados. Todos los derechos reservados.</p>
     </footer>
 
     <script>
-        const slides = document.querySelectorAll(".carouselbanner-slide");
-        let currentSlide = 0;
-        let interval;
+        let slideIndex = 0;
+        let autoSlide;
 
         function showSlide(index) {
-            slides.forEach((slide, i) => {
-                slide.classList.remove("active");
-                if (i === index) {
-                    slide.classList.add("active");
-                }
-            });
+            const slider = document.getElementById("slider");
+            const slides = slider.querySelectorAll("img");
+
+            if (index >= slides.length) slideIndex = 0;
+            if (index < 0) slideIndex = slides.length - 1;
+
+            const offset = -slideIndex * 100;
+            slider.style.transform = `translateX(${offset}%)`;
         }
 
-        function nextSlide() {
-            currentSlide = (currentSlide + 1) % slides.length;
-            showSlide(currentSlide);
+        function changeSlide(n) {
+            slideIndex += n;
+            showSlide(slideIndex);
+            resetAutoSlide();
         }
 
-        function prevSlide() {
-            currentSlide = (currentSlide - 1 + slides.length) % slides.length;
-            showSlide(currentSlide);
+        function autoAdvance() {
+            slideIndex++;
+            showSlide(slideIndex);
         }
 
-        function startCarousel() {
-            interval = setInterval(nextSlide, 10000); // Cambia cada 10 segundos
+        function resetAutoSlide() {
+            clearInterval(autoSlide);
+            autoSlide = setInterval(autoAdvance, 5000);
         }
 
-        function resetCarousel() {
-            clearInterval(interval);
-            startCarousel();
-        }
+        document.addEventListener("DOMContentLoaded", () => {
+            showSlide(slideIndex);
+            autoSlide = setInterval(autoAdvance, 5000);
 
-        // Conectar botones con funciones
-        function carouselbannerNext() {
-            nextSlide();
-            resetCarousel(); // reinicia el tiempo al cambiar manualmente
-        }
-
-        function carouselbannerPrev() {
-            prevSlide();
-            resetCarousel(); // reinicia el tiempo al cambiar manualmente
-        }
-
-        // Iniciar carrusel
-        showSlide(currentSlide);
-        startCarousel();
-    </script>
-
-
-
-
-
-
-    <script>
-        // Carrusel central con personaje (el que está más abajo)
-        let currentIndexBanner = 0;
-        const carousel = document.getElementById('carousel');
-        const slidesPersonaje = document.querySelectorAll('#carousel > div');
-
-        function updateSlidePersonaje() {
-            carousel.style.transform = `translateX(-${currentIndexBanner * 100}%)`;
-
-            const personajes = document.querySelectorAll('.persona');
-            personajes.forEach((p, index) => {
-                p.style.transform = index === currentIndexBanner ? 'translateX(0px)' : 'translateX(100px)';
-            });
-        }
-
-        function nextSlidePersonaje() {
-            currentIndexBanner = (currentIndexBanner + 1) % slidesPersonaje.length;
-            updateSlidePersonaje();
-        }
-
-        function prevSlidePersonaje() {
-            currentIndexBanner = (currentIndexBanner - 1 + slidesPersonaje.length) % slidesPersonaje.length;
-            updateSlidePersonaje();
-        }
-
-        setInterval(nextSlidePersonaje, 5000);
-    </script>
-
-    <script>
-        // Carrusel de productos (mugs, etc.)
-        let currentIndexProducto = 0;
-        const slidesProducto = document.querySelectorAll(".carrusel .slide");
-        const carrusel = document.getElementById("carrusel");
-        let intervalProducto;
-
-        function showProductSlide(index) {
-            currentIndexProducto = (index + slidesProducto.length) % slidesProducto.length;
-            carrusel.style.transform = `translateX(-${currentIndexProducto * 100}%)`;
-        }
-
-        function nextProductSlide() {
-            showProductSlide(currentIndexProducto + 1);
-        }
-
-        function prevProductSlide() {
-            showProductSlide(currentIndexProducto - 1);
-        }
-
-        function startAutoSlide() {
-            intervalProducto = setInterval(nextProductSlide, 5000);
-        }
-
-        function stopAutoSlide() {
-            clearInterval(intervalProducto);
-        }
-
-        startAutoSlide();
-        carrusel.addEventListener("mouseenter", stopAutoSlide);
-        carrusel.addEventListener("mouseleave", startAutoSlide);
-    </script>
-
-    <script>
-        window.addEventListener('scroll', () => {
-            const scrollPos = window.scrollY;
-            if (scrollPos > 100) {
-                document.body.classList.add('scroll-activo');
-            } else {
-                document.body.classList.remove('scroll-activo');
-            }
+            const sliderContainer = document.querySelector(".slider-container");
+            sliderContainer.addEventListener("mouseenter", () => clearInterval(autoSlide));
+            sliderContainer.addEventListener("mouseleave", resetAutoSlide);
         });
     </script>
-
 </body>
 </html>
