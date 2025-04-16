@@ -41,17 +41,6 @@
             transform: rotate(-15deg);
         }
 
-        /* Movimiento animado del fondo */
-        @keyframes moverFondo {
-            0% {
-                transform: translateY(0);
-            }
-
-            100% {
-                transform: translateY(-100px);
-            }
-        }
-
         /* Cuando se hace scroll */
         body.scroll-activo #fondo-animado {
             background-color: #ffd9ec; /* Rosa pastel suave */
@@ -88,19 +77,6 @@
             width: 200px;
             border-radius: 30%;
             object-fit: cover;
-        }
-
-        @media screen and (max-width: 768px) {
-            header {
-                flex-direction: column;
-                height: auto;
-                padding: 10px 20px;
-            }
-
-            .logo-img {
-                height: 80px;
-                margin-bottom: 10px;
-            }            
         }
 
         /* Comentario: header end*/
@@ -328,71 +304,6 @@
                     color: #d14fa1;
                 }
 
-        @media (max-width: 768px) {
-            .footer-top {
-                flex-direction: column;
-                align-items: center;
-            }
-        }
-
-
-        @media (max-width: 768px) {
-            .carrusel-container {
-                width: 100%;
-                height: auto;
-            }
-
-            .slide img {
-                width: 90%;
-                height: auto;
-            }
-
-            .btn-nav {
-                width: 35px;
-                height: 35px;
-                font-size: 18px;
-            }
-
-            .productos {
-                flex-direction: column;
-                align-items: center;
-            }
-
-            .producto {
-                width: 90%;
-            }
-
-            .search-bar input {
-                width: 150px;
-            }
-
-            header {
-                flex-direction: column;
-                gap: 10px;
-            }
-        }
-
-        @keyframes fadeInBanner {
-            from {
-                opacity: 0;
-                transform: translateY(-20px);
-            }
-
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        @keyframes shineText {
-            0% {
-                background-position: -500%;
-            }
-
-            100% {
-                background-position: 500%;
-            }
-        }
     </style>
     <style>
         .carouselbanner-container {
