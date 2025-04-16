@@ -100,12 +100,7 @@
             .logo-img {
                 height: 80px;
                 margin-bottom: 10px;
-            }
-
-            .search-bar input {
-                width: 90%;
-                font-size: 14px;
-            }
+            }            
         }
 
         /* Comentario: header end*/
@@ -448,13 +443,35 @@
             right: 50px;
         }
     </style>
+    <style>
+        .buscador input[type="text"] {
+            padding: 10px 20px;
+            border-radius: 25px;
+            border: none;
+            outline: none;
+            width: 300px;
+            font-size: 14px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+            transition: all 0.3s ease-in-out;
+        }
+
+            .buscador input[type="text"]::placeholder {
+                color: #999;
+            }
+
+            .buscador input[type="text"]:focus {
+                box-shadow: 0 0 8px #ff69b4;
+                transform: scale(1.03);
+            }
+
+    </style>
 
 </head>
 <body>
 
     <header>
         <img src="Images/logo.png" alt="NAMI" class="logo-img">
-        <div class="search-bar">
+        <div class="buscador">
             <input type="text" placeholder="Buscar productos, marcas...">
         </div>
         <div>👤 NAMI</div>
