@@ -79,44 +79,48 @@
             object-fit: cover;
         }
 
-        .bienvenida-contenedor {
+        .bienvenida-header {
             display: flex;
-            justify-content: center;
             align-items: center;
-            margin: 60px auto;
-            max-width: 800px;
-            flex-wrap: wrap;
+            gap: 15px;
+            margin-left: auto;
+            padding-right: 20px;
         }
 
         .icono-usuario {
-            width: 180px;
-            height: 180px;
+            width: 50px;
+            height: 50px;
             object-fit: contain;
-            margin-right: 30px;
         }
 
         .rectangulo-bienvenida {
-            background-color: #fce2df;
-            padding: 30px 60px;
-            border-radius: 25px;
-            text-align: center;
+            background-color: #fde8e8;
+            padding: 10px 20px;
+            border-radius: 20px;
             box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            height: 70px;
         }
 
         .texto-pequeño {
-            font-size: 20px;
-            font-weight: bold;
+            font-size: 14px;
             margin: 0;
+            text-align: center;
+            font-weight: bold;
             color: #333;
         }
 
         .texto-nombre {
-            font-size: 36px;
+            font-size: 20px;
             font-weight: bold;
-            color: #000;
             font-family: 'Comic Sans MS', cursive, sans-serif;
-            margin-top: 10px;
+            color: #000;
+            margin: 0;
+            text-align: center;
         }
+
 
         /* Comentario: header end*/
 
@@ -496,12 +500,11 @@
         <div class="buscador">
             <input type="text" placeholder="Buscar productos, marcas...">
         </div>
-        <div class="bienvenida-contenedor">
+        <div class="bienvenida-header">
             <img src="Images/user.png" alt="Usuario" class="icono-usuario">
             <div class="rectangulo-bienvenida">
                 <p class="texto-pequeño">Bienvenido:</p>
-                <p class="texto-nombre">INGRESAR</p>
-
+                <p class="texto-nombre">NOMBRE</p>
             </div>
         </div>
     </header>
