@@ -60,52 +60,70 @@
         /* Comentario: header */
 
         header {
-            position: sticky;
-            top: 0;
-            z-index: 1000;
-            background-color: #fbd5e7;
-            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
             display: flex;
             align-items: center;
             justify-content: space-between;
+            background-color: #fdd9ea;
             padding: 20px 40px;
-            height: 180px;
+            flex-wrap: wrap;
+        }
+
+        .header-section {
+            display: flex;
+            align-items: center;
+        }
+
+        .izquierda {
+            flex: 1;
+        }
+
+        .centro {
+            flex: 2;
+            justify-content: center;
+        }
+
+        .derecha {
+            gap: 10px;
+            justify-content: flex-end;
+        }
+
+        .buscador input[type="text"] {
+            padding: 10px 20px;
+            border-radius: 25px;
+            border: none;
+            outline: none;
+            width: 300px;
+            font-size: 14px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+            transition: all 0.3s ease-in-out;
         }
 
         .logo-img {
-            height: 200px;
-            width: 200px;
+            height: 100px;
+            width: 100px;
             border-radius: 30%;
             object-fit: cover;
         }
 
-        .bienvenida-header {
-            display: flex;
-            align-items: center;
-            gap: 15px;
-            margin-left: auto;
-            padding-right: 20px;
-        }
-
         .icono-usuario {
-            width: 50px;
-            height: 50px;
+            width: 40px;
+            height: 40px;
             object-fit: contain;
         }
 
         .rectangulo-bienvenida {
             background-color: #fde8e8;
-            padding: 10px 20px;
-            border-radius: 20px;
-            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+            padding: 8px 16px;
+            border-radius: 15px;
             display: flex;
             flex-direction: column;
             justify-content: center;
-            height: 70px;
+            height: 55px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.05);
         }
 
         .texto-pequeño {
-            font-size: 14px;
+            font-size: 13px;
             margin: 0;
             text-align: center;
             font-weight: bold;
@@ -113,10 +131,9 @@
         }
 
         .texto-nombre {
-            font-size: 20px;
+            font-size: 18px;
             font-weight: bold;
             font-family: 'Comic Sans MS', cursive, sans-serif;
-            color: #000;
             margin: 0;
             text-align: center;
         }
@@ -496,19 +513,24 @@
 <body>
 
     <header>
-        <img src="Images/logo.png" alt="NAMI" class="logo-img">
-        <div class="buscador">
-            <input type="text" placeholder="Buscar productos, marcas...">
+        <div class="header-section izquierda">
+            <img src="Images/logo.png" alt="NAMI" class="logo-img">
         </div>
-        <div class="bienvenida-header">
+        <div class="header-section centro">
+            <div class="buscador">
+                <input type="text" placeholder="Buscar productos, marcas...">
+            </div>
+        </div>
+        <div class="header-section derecha">
             <img src="Images/usuario.png" alt="Usuario" class="icono-usuario">
             <div class="rectangulo-bienvenida">
                 <p class="texto-pequeño">Bienvenido:</p>
-                <p class="texto-nombre">NOMBRE</p>
+                <p class="texto-nombre" id="nombre-usuario">NOMBRE</p>
             </div>
         </div>
     </header>
-    
+
+
 
     <div id="fondo-animado">
         <div class="nami-patron">
